@@ -3,7 +3,7 @@
 @section('content')
 <div id="content-header">
     {{-- <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Courses</a> </div> --}}
-    <h1>Courses</h1>
+    <h2>Courses</h2>
     @if(Session::has('flash_message_error'))
         <div class="alert alert-error alert-block">
             <button type="button" class="close" data-dismiss="alert">x</button>
@@ -21,24 +21,26 @@
     <div class="row-fluid">
       <div class="span12">
         <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+          {{-- <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>View Courses</h5>
-          </div>
+          </div> --}}
           <div class="widget-content nopadding">
             <table id="example" class="table table-striped table-bordered" style="width:100%">
               <thead>
                 <tr>
-                  <th>Course ID</th>
-                  <th>Name</th>
+                  {{-- <th>Course ID</th> --}}
+                  <th>Course Name</th>
+                  <th width="15%">Course code</th>
                   <th>Created on</th>
-                  <th>Action</th>
+                  <th width="20%">Action</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($course as $oneCourse)
                 <tr class="gradeU">
-                  <td>{{ $oneCourse->course_id }}</td>
+                  {{-- <td>{{ $oneCourse->course_id }}</td> --}}
                   <td>{{ $oneCourse->course_name }}</td>
+                  <td>{{ $oneCourse->course_id }}</td>
                   <td>{{ $oneCourse->created_at }}</td>
                   {{-- <td>{{ $oneCourse-> }}</td> --}}
                   <td class="center"> Edit | Delete </td>
@@ -60,7 +62,7 @@
 
 <script>
 $(document).ready(function() {
-    $('#example').DataTable();
+    $('#example').DataTables();
 } );
 </script>
 @endsection

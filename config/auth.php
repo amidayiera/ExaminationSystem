@@ -17,7 +17,7 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
-    // Auth::guard('lecturer')->check($credentials),
+    // Auth::guard('admin')->check($credentials),
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -46,13 +46,13 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
-        'lecturer' => [
+        'admin' => [
             'driver' => 'session',
-            'provider' => 'lecturers',
+            'provider' => 'admins',
         ],
-        'lecturer-api' => [
+        'admin-api' => [
             'driver' => 'token',
-            'provider' => 'lecturers',
+            'provider' => 'admins',
             'hash' => false,
         ],
     ],
@@ -79,9 +79,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-        'lecturers' => [
+        'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Lecturer::class,
+            'model' => App\Admin::class,
         ],
 
         // 'users' => [
@@ -111,8 +111,8 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
-        'lecturers' => [
-            'provider' => 'lecturers',
+        'admins' => [
+            'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 60,
         ],

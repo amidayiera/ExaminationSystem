@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Lecturer;
+use App\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -40,7 +40,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->middleware('guest:lecturer');
+        $this->middleware('guest:admin');
     }
 
     /**
@@ -61,9 +61,9 @@ class RegisterController extends Controller
      /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showLecturerRegisterForm()
+    public function showAdminRegisterForm()
     {
-        return view('auth.register', ['url' => 'lecturer']);
+        return view('auth.register', ['url' => 'admin']);
     }
 
     /**
@@ -86,15 +86,15 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function createLecturer(Request $request)
+    protected function createAdmin(Request $request)
     {
         $this->validator($request->all())->validate();
-        Lecturer::create([
+        Admin::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->intended('lecturer/login');
+        return redirect()->intended('admin/login');
     }
 }

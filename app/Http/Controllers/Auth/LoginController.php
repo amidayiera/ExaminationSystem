@@ -36,22 +36,22 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('guest:lecturer')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
     }
-    public function showLecturerLoginForm() {
-        return view('auth.login', ['url' => 'lecturer']);
+    public function showAdminLoginForm() {
+        return view('auth.login', ['url' => 'admin']);
     }
-    public function lecturerLogin(Request $request) {
+    public function adminLogin(Request $request) {
         // validate form data
         $this->validate($request, [
             'email'=>'required|email',
             'password'=>'required|min:6'
         ]);
         // attempt to log user in 
-        if (Auth::guard('lecturer')->attempt(['email'=>$request->email, 'password'=>$request->password], $request->get('remember'))) {
+        if (Auth::guard('admin')->attempt(['email'=>$request->email, 'password'=>$request->password], $request->get('remember'))) {
             // successful, redirect to home page
-            return redirect()->intended('/lecturer');
-            // return view('lecturer.index');
+            return redirect()->intended('/admin');
+            // return view('admin.index');
         }
         // unsuccessful, redirect to form, with data
         return redirect()->back()->withInput($request->only('email','remember'));
