@@ -19,6 +19,13 @@
                                 <input id="course_name" type="text" name="course_name" class="form-control" required autofocus>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="course_code" class="col-md-4 col-form-label text-md-right">{{ __('Course Code') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="course_code" type="text" name="course_code" class="form-control" required autofocus>
+                            </div>
+                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">

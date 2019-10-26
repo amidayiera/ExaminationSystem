@@ -15,6 +15,7 @@ class CourseController extends Controller
             // echo "<pre>"; print_r($data); die;
             $course  = new Course;
             $course->course_name = request('course_name');
+            $course->course_code = request('course_code');
             $course->save();
             return redirect('/courses/viewcourse')->with('flash_message_success','Course added successfully!');
         }

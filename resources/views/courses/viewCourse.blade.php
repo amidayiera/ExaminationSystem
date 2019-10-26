@@ -40,10 +40,10 @@
                 <tr class="gradeU">
                   {{-- <td>{{ $oneCourse->course_id }}</td> --}}
                   <td>{{ $oneCourse->course_name }}</td>
-                  <td>{{ $oneCourse->course_id }}</td>
+                  <td>{{ $oneCourse->course_code }}</td>
                   <td>{{ $oneCourse->created_at }}</td>
                   {{-- <td>{{ $oneCourse-> }}</td> --}}
-                  <td class="center"> Edit | Delete </td>
+                  <td class="center"> <button class="edit btn btn-primary">Edit</button> <button class="delete btn btn-danger">Delete</button> </td>
                 </tr>
                 @endforeach
               </tbody>

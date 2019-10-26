@@ -49,7 +49,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar" class="fixed">
             <div class="sidebar-header">
-                <h3>Menu</h3>
+                <h3>Administrator</h3>
             </div>
 
             <ul class="list-unstyled components">
