@@ -27,10 +27,14 @@ Route::get('/home', 'HomeController@index')->name('home');
     // Route::get('/index', 'LoginController@adminLogin');
 
     Route::match(['get','post'], '/courses/addcourse', 'CourseController@addCourse');
+    Route::match(['get','post'], '/courses/editcourse/{course_id}', 'CourseController@editCourse');
+    Route::match(['get','post'], '/courses/deletecourse/{course_id}', 'CourseController@deleteCourse');
+
     Route::get('/courses/viewcourse','CourseController@viewCourses');
 // });
 
 Route::view('/admin', 'admin');
 
-Route::resource('viewCourses', 'CourseController');
+// Route::resource('courses', 'CourseController');
+
 

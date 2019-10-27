@@ -36,14 +36,15 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($course as $oneCourse)
+                @foreach ($courses as $course)
                 <tr class="gradeU">
                   {{-- <td>{{ $oneCourse->course_id }}</td> --}}
-                  <td>{{ $oneCourse->course_name }}</td>
-                  <td>{{ $oneCourse->course_code }}</td>
-                  <td>{{ $oneCourse->created_at }}</td>
+                  <td>{{ $course->course_name }}</td>
+                  <td>{{ $course->course_code }}</td>
+                  <td>{{ $course->created_at }}</td>
                   {{-- <td>{{ $oneCourse-> }}</td> --}}
-                  <td class="center"> <button class="edit btn btn-primary">Edit</button> <button class="delete btn btn-danger">Delete</button> </td>
+                <td class="center"> <a href="{{ url('/courses/editcourse/' .$course->course_id) }} " class="edit btn btn-primary btn-sm">Edit</a> 
+                  <a id="deleteCourseButton" href="{{ url('/courses/deletecourse/' .$course->course_id) }}" onclick="return confirm('Are you sure you want to delete this course?')" class="edit btn btn-danger btn-sm">Delete</a> </td>
                 </tr>
                 @endforeach
               </tbody>
@@ -64,5 +65,13 @@
 $(document).ready(function() {
     $('#example').DataTables();
 } );
+
+// $("deleteCourseButton").click(function(){
+//   alert('test');
+//   if(confirm("Are you sure you want to delete this course?")){
+//     return true;
+//   }
+//   return false;
+// });
 </script>
 @endsection

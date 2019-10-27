@@ -17,27 +17,33 @@ class CourseController extends Controller
             $course->course_name = request('course_name');
             $course->course_code = request('course_code');
             $course->save();
-            return redirect('/courses/viewcourse')->with('flash_message_success','Course added successfully!');
+            return redirect('/courses/viewcourse')->with('flash_message_success','Course Added successfully!');
         }
-        return view('courses.addCourse');
+        // $levels = Course::where(['parent_id'=>0])->get();
+
+        // return view('courses.addCourse')->with(comopact('levels'));
+    }
+
+    public function editCourse(Request $request, $course_id = null){
+        if($request->isMethod('post')) {
+            $data =$request->all();
+            // echo "<pre> something something"; print_r($data);die;
+            Course::where(['course_id'=>$course_id])->update(['course_name'=>$request['course_name'], 'course_code'=>$request['course_code']]);
+            return redirect('/courses/viewcourse')->with('flash_message_success','Course Updated');
+        }
+        $courseDetails = Course::where(['course_id'=>$course_id])->first();
+        return view('courses.editCourse')->with(compact('courseDetails'));
+    }
+
+    public function deleteCourse($course_id=null){
+        if(!empty($course_id)){
+            Course::where(['course_id'=>$course_id])->delete();
+            return redirect()->back()->with('flash_message_success', 'Course Deleted Successfully!');
+        }
     }
     public function viewCourses(){
-        $course = Course::get();
-
-        return view('courses.viewCourse')->with(compact('course'));
-    }
-    public function index(Request $request) {
-        if($request->ajax()) {
-            $data = viewCourses_data::latest()->get();
-            return DataTables::of($data)
-                    ->addColumn('action', function($data) {
-                        $button = '<button type = "button" name="edit" id="'.$data->id.'" class="edit btn btn-primary btn-sm">Edit</button>';
-                        $button = '&nbsp; &nbsp; &nbsp;<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-primary btn-sm">Delete</button>';
-                        return $button;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
-        }
-        return view('courses.viewCourse');
+        $courses = Course::get();
+        $courses = json_decode(json_encode($courses));
+        return view('courses.viewCourse')->with(compact('courses'));
     }
 }
