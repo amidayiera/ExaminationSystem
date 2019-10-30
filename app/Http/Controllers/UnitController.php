@@ -37,7 +37,7 @@ class UnitController extends Controller
         return view('units.editUnit')->with(compact('unitDetails'));
     }
 
-    public function deleteCourse($id=null){
+    public function deleteUnit($id=null){
         if(!empty($id)){
             Unit::where(['id'=>$id])->delete();
             return redirect()->back()->with('flash_message_success', 'Unit Deleted Successfully!');
