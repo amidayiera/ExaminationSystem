@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -10,9 +9,11 @@ use Symfony\Component\Console\Input\Input;
 class CourseController extends Controller
 {
     public function addCourse(Request $request) {
+        // echo "add course function";
+        // $data = $request->all();
+        // echo "<pre>"; print_r($data); die;
+        // return view('courses.addCourse');
         if($request->isMethod('post')) {
-            // $data = $request->all();
-            // echo "<pre>"; print_r($data); die;
             $course  = new Course;
             $course->course_name = request('course_name');
             $course->course_code = request('course_code');
@@ -21,7 +22,7 @@ class CourseController extends Controller
         }
         // $levels = Course::where(['parent_id'=>0])->get();
 
-        // return view('courses.addCourse')->with(comopact('levels'));
+        return view('courses.addCourse');
     }
 
     public function editCourse(Request $request, $course_id = null){

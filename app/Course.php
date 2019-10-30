@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     protected $fillable = [
-        'course_id','course_name','course_code'
+        'course_name','course_code'
     ];
+    public function units(){
+        return $this->hasMany('App\unit','id');
+
+    }
 }

@@ -3,7 +3,7 @@
 @section('content')
 <div id="content-header">
     {{-- <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Courses</a> </div> --}}
-    <h2>Courses</h2>
+    <h2>Units</h2>
     @if(Session::has('flash_message_error'))
         <div class="alert alert-error alert-block">
             <button type="button" class="close" data-dismiss="alert">x</button>
@@ -18,7 +18,6 @@
   </div>
   <div class="container-fluid">
     <hr>
-  <a href="{{ url('/courses/addcourse') }}" class="btn btn-primary float-right">Add New Course</a>
     <div class="row-fluid">
       <div class="span12">
         <div class="widget-box">
@@ -30,22 +29,28 @@
               <thead>
                 <tr>
                   {{-- <th>Course ID</th> --}}
+                  <th>Unit Name</th>
+                  <th width="15%">Unit Code</th>
                   <th>Course Name</th>
-                  <th width="15%">Course code</th>
+
                   <th>Created on</th>
                   <th width="20%">Action</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($courses as $course)
+                @foreach ($units as $unit)
                 <tr class="gradeU">
                   {{-- <td>{{ $oneCourse->course_id }}</td> --}}
-                  <td>{{ $course->course_name }}</td>
-                  <td>{{ $course->course_code }}</td>
-                  <td>{{ $course->created_at }}</td>
+                  <td>{{ $unit->unit_name }}</td>
+                  <td>{{ $unit->unit_code }}</td>
+                  <td>{{ $unit->unit_code }}</td>
+
+                  {{-- <td>{{ $unit->course['course_name'] }}</td> --}}
+
+                  <td>{{ $unit->created_at }}</td>
                   {{-- <td>{{ $oneCourse-> }}</td> --}}
-                <td class="center"> <a href="{{ url('/courses/editcourse/' .$course->course_id) }} " class="edit btn btn-primary btn-sm">Edit</a> 
-                  <a id="deleteCourseButton" href="{{ url('/courses/deletecourse/' .$course->course_id) }}" onclick="return confirm('Are you sure you want to delete this course?')" class="edit btn btn-danger btn-sm">Delete</a> </td>
+                <td class="center"> <a href="{{ url('/units/editunit/' .$unit->id) }} " class="edit btn btn-primary btn-sm">Edit</a> 
+                  <a id="deleteUnitButton" href="{{ url('/units/deleteunit/' .$unit->id) }}" onclick="return confirm('Are you sure you want to delete this unit?')" class="edit btn btn-danger btn-sm">Delete</a> </td>
                 </tr>
                 @endforeach
               </tbody>
