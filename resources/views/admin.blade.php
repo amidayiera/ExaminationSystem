@@ -1,3 +1,5 @@
+{{-- @extends('layouts.auth') --}}
+{{-- @extends('layouts.app') --}}
 @extends('layouts.sidebar')
 
 @section('content')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Admin;
+use App\Lecturer;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -41,6 +42,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
         $this->middleware('guest:admin');
+        $this->middleware('guest:lecturer');
     }
 
     /**
@@ -64,6 +66,10 @@ class RegisterController extends Controller
     public function showAdminRegisterForm()
     {
         return view('auth.register', ['url' => 'admin']);
+    }
+    public function showLecturerRegisterForm()
+    {
+        return view('auth.register', ['url' => 'lecturer']);
     }
 
     /**
@@ -96,5 +102,16 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
         return redirect()->intended('admin/login');
+    }
+    protected function createLecturer(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        Lecturer::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        return redirect()->intended('lecturer/login');
     }
 }
