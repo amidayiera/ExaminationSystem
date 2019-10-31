@@ -16,16 +16,14 @@ class UnitController extends Controller
             $unit  = new Unit;
             $unit->unit_name = request('unit_name');
             $unit->unit_code = request('unit_code');
-            
             // $courseBelongs = Course::all();
             $unit->save();
             return redirect('/units/viewunit')->with('flash_message_success','Unit Added successfully!');
         }
         // $levels = Course::where(['parent_id'=>0])->get();
-
         return view('units.addUnit');
     }
-    
+
     public function editUnit(Request $request, $id = null){
         if($request->isMethod('post')) {
             $data =$request->all();
@@ -43,6 +41,7 @@ class UnitController extends Controller
             return redirect()->back()->with('flash_message_success', 'Unit Deleted Successfully!');
         }
     }
+
     public function viewUnits(){
         $units = Unit::get();
         $units = json_decode(json_encode($units));
