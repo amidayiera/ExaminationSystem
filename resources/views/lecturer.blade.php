@@ -1,4 +1,5 @@
-@extends('layouts.auth')
+{{-- @extends('layouts.auth') --}}
+@extends('layouts.sidebar')
 
 @section('content')
 <div class="container">

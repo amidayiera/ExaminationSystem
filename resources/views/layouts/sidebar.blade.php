@@ -50,41 +50,10 @@
         <!-- Sidebar  -->
         <nav id="sidebar" class="fixed">
             <div class="sidebar-header">
-                <h3>Administrator</h3>
+                <h3>Lecturer</h3>
             </div>
 
             <ul class="list-unstyled components">
-                <li>
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Courses</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="{{ url('courses/addcourse') }}">Create New Course</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('courses/viewcourse') }}">View Courses</a>
-                        </li>
-                       
-                    </ul>
-                </li>
-                <hr>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Units</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="{{ url('units/addunit') }}">Create New Unit</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('units/viewunit') }}">View Units</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Questions</a>
-                </li>
-                <hr>
                 <li>
                   <a href="#">Students</a>
               </li>
@@ -109,21 +78,44 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            {{-- <li class="nav-item">
-                                <a class="nav-link"  href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                              document.getElementById('logout-form').submit();">
-                                 {{ __('Logout') }}</a>
-                                 
-                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </li> --}}
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
-                            </li>
-                        </ul>
+                                    {{-- <nav class="navbar navbar-expand-md navbar-light navbar-laravel"> --}}
+                                      
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+        
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <!-- Left Side Of Navbar -->
+                            <ul class="navbar-nav mr-auto">
+        
+                            </ul>
+        
+                            <!-- Right Side Of Navbar -->
+                            <ul class="navbar-nav ml-auto">
+                                <!-- Authentication Links -->
+                                <li class="nav-item dropdown">
+{{-- DISPLAY LECTURERS NAME ON NAVIGATION BAR --}}
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::guard('lecturer')->user()}} <span class="caret"></span>
+                                        </a>
+        
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+        
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    
+                                    {{-- </nav> --}}
+                            
                     </div>
                 </div>
             </nav>
@@ -135,13 +127,7 @@
 
    
     <!-- Scripts -->
-{{--         
-    <script src={{ asset('js/matrix.js')}}></script> 
-    <script src={{ asset('js/jquery.uniform.js')}}></script> 
-    <script src={{ asset('js/jquery.dataTables.min.js')}}></script> 
-    <script src={{ asset('js/select2.min.js')}}></script> 
-    <script src={{ asset('js/matrix-tables.js')}}></script> 
-    <script src={{ asset('js/jquery.ui.custom.js')}}></script> --}}
+         
  <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
