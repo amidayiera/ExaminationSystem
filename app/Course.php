@@ -10,6 +10,7 @@ class Course extends Model
     // protected $fillable = [
     //     'course_name','course_code'
     // ];
+    protected $primaryKey = 'course_id';
     protected $guarded = [];
     public function units(){
         // return $this->hasMany('App\Unit','id');

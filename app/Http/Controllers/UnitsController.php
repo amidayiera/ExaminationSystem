@@ -13,6 +13,8 @@ class UnitsController extends Controller
         $courses = Course::all();
         
         if($request->isMethod('post')) {
+
+            
             // $data = $request->all();
             // echo "<pre>"; print_r($data); die;
             $unit  = new Unit;
@@ -46,8 +48,12 @@ class UnitsController extends Controller
     }
 
     public function viewUnits(){
+        $courses = Course::get();
+        $courses = json_decode(json_encode($courses));
+
         $units = Unit::get();
         $units = json_decode(json_encode($units));
-        return view('units.viewunit')->with(compact('units'));
+
+        return view('units.viewunit')->with(compact('units', 'courses'));
     }
 }

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Course;
+use App\Unit;
 use Symfony\Component\Console\Input\Input;
 // use DataTables;
 
