@@ -6,11 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    protected $fillable = [
-        'course_name','course_code'
-    ];
+    protected $table = 'courses';
+    // protected $fillable = [
+    //     'course_name','course_code'
+    // ];
+    protected $guarded = [];
     public function units(){
-        return $this->hasMany('App\unit','id');
+        // return $this->hasMany('App\Unit','id');
+        return $this->hasMany(Unit::class);
+
 
     }
 }

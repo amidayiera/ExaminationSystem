@@ -1,4 +1,4 @@
-<?php
+
 
 namespace App\Http\Controllers;
 
@@ -10,13 +10,10 @@ use App\Course;
 class UnitsController extends Controller
 {
     public function addUnit(Request $request) {
-        $courses = Course::all();
-        
         if($request->isMethod('post')) {
             // $data = $request->all();
             // echo "<pre>"; print_r($data); die;
             $unit  = new Unit;
-            $unit->course_id = request('course_id');
             $unit->unit_name = request('unit_name');
             $unit->unit_code = request('unit_code');
             // $courseBelongs = Course::all();
@@ -24,7 +21,7 @@ class UnitsController extends Controller
             return redirect('/units/viewunit')->with('flash_message_success','Unit Added successfully!');
         }
         // $levels = Course::where(['parent_id'=>0])->get();
-        return view('units.addUnit')->with(compact('courses'));
+        return view('units.addUnit');
     }
 
     public function editUnit(Request $request, $id = null){

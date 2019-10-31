@@ -15,7 +15,8 @@ class CreateUnitsTable extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('course_id');
+            // $table->integer('course_id')->unsigned();
+            $table->unsignedInteger('course_id');
             $table->string('unit_code');
             $table->string('unit_name');
             $table->rememberToken();

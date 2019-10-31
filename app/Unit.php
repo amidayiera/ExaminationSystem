@@ -6,12 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Unit extends Model
 {
-    protected $fillable = [
-        'course_id','unit_name','unit_code'
-    ];
+    protected $table = 'units';
+    // protected $fillable = [
+    //     'course_id','unit_code','unit_name'
+    // ];
+    protected $guarded = [];
 
     public function course(){
-        return $this->belongsTo('App\Course','course_id');
+        // return $this->belongsTo('App\Course','course_id');
+        return $this->belongsTo(Course::class);
+
     }
 }
 

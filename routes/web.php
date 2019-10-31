@@ -15,19 +15,20 @@ Route::get('admin/login', 'Auth\LoginController@showAdminLoginForm')->name('admi
 Route::post('admin/login', 'Auth\LoginController@adminLogin')->name('admin.login.submit');
 // Route::get('/index', 'LoginController@adminLogin');
 
-Route::match(['get','post'], '/courses/addcourse', 'CoursesController@addCourse');
 // Route::get('/courses/addcourse', function () {
-//     return 'Hello World';
-// });
+    //     return 'Hello World';
+    // });
+Route::match(['get','post'], '/courses/addcourse', 'CoursesController@addCourse');
 Route::match(['get','post'], '/courses/editcourse/{course_id}', 'CoursesController@editCourse');
 Route::match(['get','post'], '/courses/deletecourse/{course_id}', 'CoursesController@deleteCourse');
-
 Route::get('/courses/viewcourse','CoursesController@viewCourses');
 
 Route::match(['get','post'], '/units/addunit', 'UnitsController@addUnit');
 Route::match(['get','post'], '/units/editunit/{id}', 'UnitsController@editUnit');
 Route::match(['get','post'], '/units/deleteunit/{id}', 'UnitsController@deleteUnit');
-
 Route::get('/units/viewunit','UnitsController@viewUnits');
 
+// Route::get('/units/viewunit','UnitsController@index');
+
+Route::resource('units','UnitsController');
 Route::view('/admin', 'admin');

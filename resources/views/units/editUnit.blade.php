@@ -5,10 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8 mt-lg-5">
             <div class="card">
-                {{-- <div class="card-header">{{ __('Login') }}</div> --}}
                 <div class="card-header">Edit Unit</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ url('/units/editunit/'. $unitDetails->unit_id) }}" id="editUnit">
+                    <form method="POST" action="{{ 'UnitsController@update'. $unit->unit_id) }}" id="editUnit">
                         @csrf
                         {{ csrf_field() }}
 
