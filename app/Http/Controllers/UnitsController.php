@@ -7,7 +7,7 @@ use App\Unit;
 use Symfony\Component\Console\Input\Input;
 use App\Course;
 
-class UnitController extends Controller
+class UnitsController extends Controller
 {
     public function addUnit(Request $request) {
         if($request->isMethod('post')) {

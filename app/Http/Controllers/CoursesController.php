@@ -6,7 +6,7 @@ use App\Course;
 use Symfony\Component\Console\Input\Input;
 // use DataTables;
 
-class CourseController extends Controller
+class CoursesController extends Controller
 {
     public function addCourse(Request $request) {
         // echo "add course function";

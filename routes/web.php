@@ -15,19 +15,19 @@ Route::get('admin/login', 'Auth\LoginController@showAdminLoginForm')->name('admi
 Route::post('admin/login', 'Auth\LoginController@adminLogin')->name('admin.login.submit');
 // Route::get('/index', 'LoginController@adminLogin');
 
-Route::match(['get','post'], '/courses/addcourse', 'CourseController@addCourse');
+Route::match(['get','post'], '/courses/addcourse', 'CoursesController@addCourse');
 // Route::get('/courses/addcourse', function () {
 //     return 'Hello World';
 // });
-Route::match(['get','post'], '/courses/editcourse/{course_id}', 'CourseController@editCourse');
-Route::match(['get','post'], '/courses/deletecourse/{course_id}', 'CourseController@deleteCourse');
+Route::match(['get','post'], '/courses/editcourse/{course_id}', 'CoursesController@editCourse');
+Route::match(['get','post'], '/courses/deletecourse/{course_id}', 'CoursesController@deleteCourse');
 
-Route::get('/courses/viewcourse','CourseController@viewCourses');
+Route::get('/courses/viewcourse','CoursesController@viewCourses');
 
-Route::match(['get','post'], '/units/addunit', 'UnitController@addUnit');
-Route::match(['get','post'], '/units/editunit/{id}', 'UnitController@editUnit');
-Route::match(['get','post'], '/units/deleteunit/{id}', 'UnitController@deleteUnit');
+Route::match(['get','post'], '/units/addunit', 'UnitsController@addUnit');
+Route::match(['get','post'], '/units/editunit/{id}', 'UnitsController@editUnit');
+Route::match(['get','post'], '/units/deleteunit/{id}', 'UnitsController@deleteUnit');
 
-Route::get('/units/viewunit','UnitController@viewUnits');
+Route::get('/units/viewunit','UnitsController@viewUnits');
 
 Route::view('/admin', 'admin');
