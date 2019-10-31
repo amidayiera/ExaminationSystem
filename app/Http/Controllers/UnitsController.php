@@ -30,14 +30,16 @@ class UnitsController extends Controller
     }
 
     public function editUnit(Request $request, $id = null){
+        
+        $courses = Course::all();
         if($request->isMethod('post')) {
             $data =$request->all();
             // echo "<pre> something something"; print_r($data);die;
-            Unit::where(['id'=>$id])->update(['unit_name'=>$request['unit_name'], 'unit_code'=>$request['unit_code']]);
+            Unit::where(['id'=>$id])->update(['course_id'=>$request['course_id'],'unit_name'=>$request['unit_name'], 'unit_code'=>$request['unit_code']]);
             return redirect('/units/viewunit')->with('flash_message_success','Unit Updated');
         }
         $unitDetails = Unit::where(['id'=>$id])->first();
-        return view('units.editUnit')->with(compact('unitDetails'));
+        return view('units.editUnit')->with(compact('unitDetails','courses'));
     }
 
     public function deleteUnit($id=null){

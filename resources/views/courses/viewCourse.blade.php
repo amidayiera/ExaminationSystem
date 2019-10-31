@@ -18,7 +18,7 @@
   </div>
   <div class="container-fluid">
     <hr>
-  <a href="{{ url('/courses/addcourse') }}" class="btn btn-primary float-right">Add New Course</a>
+  {{-- <a href="{{ url('/courses/addcourse') }}" class="btn btn-primary float-right">Add New Course</a> --}}
     <div class="row-fluid">
       <div class="span12">
         <div class="widget-box">

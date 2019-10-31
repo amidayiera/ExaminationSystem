@@ -7,10 +7,22 @@
             <div class="card">
                 <div class="card-header">Edit Unit</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ 'UnitsController@update'. $unit->unit_id) }}" id="editUnit">
+                    <form method="POST" action="{{ url('/units/editunit/'. $unitDetails->id) }}" id="editUnit">
                         @csrf
                         {{ csrf_field() }}
 
+                        <div class="form-group row">
+                            <label for="course_id" class="col-md-4 col-form-label text-md-right">{{ __('Course') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" name="course_id" id="course_id">
+                                    @foreach ($courses as $course)
+                                        <option value="{{ $course->course_id}}">{{$course->course_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        
                         <div class="form-group row">
                             <label for="unit_name" class="col-md-4 col-form-label text-md-right">{{ __('Unit Name') }}</label>
 
