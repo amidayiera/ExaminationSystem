@@ -1,6 +1,6 @@
 {{-- @extends('layouts.auth') --}}
 {{-- @extends('layouts.app') --}}
-@extends('layouts.sidebar')
+@extends('layouts.adminSidebar')
 
 @section('content')
 <div class="container">
