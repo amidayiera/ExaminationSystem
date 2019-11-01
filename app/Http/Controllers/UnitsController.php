@@ -60,6 +60,7 @@ class UnitsController extends Controller
 
     public function assignLecturer(Request $request) {
         $lecturers = Lecturer::all();
+        $courses = Course::all();
         $units = Unit::get();
         $units = json_decode(json_encode($units));
 
@@ -67,13 +68,12 @@ class UnitsController extends Controller
             // $data = $request->all();
             // echo "<pre>"; print_r($data); die;
             $unit  = new Unit;
-            $unit->unit_id = request('unit_id');
+            $unit->id = request('id');
             $unit->lecturer_id = request('lecturer_id');
-            // $courseBelongs = Course::all();
             $unit->save();
             return redirect('/units/viewlecturer')->with('flash_message_success','Unit Added successfully!');
         }
-        return view('units.assignLecturer')->with(compact('lecturers','units'));
+        return view('units.assignLecturer')->with(compact('lecturers','units','courses'));
     }
     public function viewLecturers(){
         $lecturers =Lecturer::get();
@@ -84,4 +84,24 @@ class UnitsController extends Controller
 
         return view('units.viewLecturer')->with(compact('units', 'lecturers'));
     }
+    public function editLecturer(Request $request, $id = null){
+        
+        $lecturers = Lecturer::all();
+        if($request->isMethod('post')) {
+            $data =$request->all();
+            // echo "<pre> something something"; print_r($data);die;
+            Unit::where(['id'=>$id])->update(['id'=>$request['id'],'lecturer_id'=>$request['lecturer_id']]);
+            return redirect('/units/viewlecturer')->with('flash_message_success','Updated Successfully');
+        }
+        $unitDetails = Unit::where(['id'=>$id])->first();
+        return view('units.editLecturer')->with(compact('unitDetails','lecturers'));
+    }
+    
+    public function deleteLecturer($lecturer_id=null){
+        if(!empty($id)){
+            Lecturer::where(['lecturer_id'=>$lecturer_id])->delete();
+            return redirect()->back()->with('flash_message_success', 'Deleted Successfully!');
+        }
+    }
+
 }

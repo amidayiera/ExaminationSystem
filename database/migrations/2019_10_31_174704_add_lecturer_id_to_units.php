@@ -26,7 +26,7 @@ class AddLecturerIdToUnits extends Migration
     public function down()
     {
         Schema::table('units', function (Blueprint $table) {
-            //
+            $table->dropColumn('lecturer_id');
         });
     }
 }

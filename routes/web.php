@@ -36,6 +36,7 @@ Route::get('/courses/viewcourse','CoursesController@viewCourses');
 Route::match(['get','post'], '/units/addunit', 'UnitsController@addUnit');
 Route::match(['get','post'], '/units/assignlecturer', 'UnitsController@assignLecturer');
 Route::match(['get','post'], '/units/editunit/{id}', 'UnitsController@editUnit');
+Route::match(['get','post'], '/units/editlecturer/{id}', 'UnitsController@editLecturer');
 Route::match(['get','post'], '/units/deleteunit/{id}', 'UnitsController@deleteUnit');
 
 Route::get('/units/viewlecturer','UnitsController@viewLecturers');

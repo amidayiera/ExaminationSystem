@@ -83,10 +83,10 @@
                     <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Lecturers</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu2">
                         <li>
-                            <a href="{{ url('lecturers/addlecturer') }}">Assign Lecturers</a>
+                            <a href="{{ url('units/assignlecturer') }}">Assign Lecturers</a>
                         </li>
                         <li>
-                            <a href="{{ url('lecturers/viewlecturer') }}">View Lecturers</a>
+                            <a href="{{ url('units/viewlecturer') }}">View Lecturers</a>
                         </li>
                     </ul>
                 </li>
