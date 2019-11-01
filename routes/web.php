@@ -41,6 +41,9 @@ Route::get('/units/viewunit','UnitsController@viewUnits');
 Route::view('/admin', 'admin');
 Route::view('/lecturer','lecturer');
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::match(['get','post'], '/lecturers/addlecturer', 'LecturersController@addLecturer');
+Route::match(['get','post'], '/lecturers/editlecturer/{id}', 'LecturersController@editLecturer');
+Route::match(['get','post'], '/lecturers/deletelecturer/{id}', 'LecturersController@deleteLecturer');
+Route::get('/lecturers/viewlecturer','LecturersController@viewLecturers');

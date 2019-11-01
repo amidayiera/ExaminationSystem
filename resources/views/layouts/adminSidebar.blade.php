@@ -68,9 +68,6 @@
                 </li>
                 <hr>
                 <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Units</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
@@ -81,8 +78,17 @@
                         </li>
                     </ul>
                 </li>
+                <hr>
                 <li>
-                    <a href="#">Questions</a>
+                    <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Lecturers</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu2">
+                        <li>
+                            <a href="{{ url('lecturers/addlecturer') }}">Assign Lecturers</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('lecturers/viewlecturer') }}">View Lecturers</a>
+                        </li>
+                    </ul>
                 </li>
                 <hr>
                 <li>

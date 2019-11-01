@@ -13,8 +13,6 @@ class UnitsController extends Controller
         $courses = Course::all();
         
         if($request->isMethod('post')) {
-
-            
             // $data = $request->all();
             // echo "<pre>"; print_r($data); die;
             $unit  = new Unit;

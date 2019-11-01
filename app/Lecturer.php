@@ -36,4 +36,7 @@ class Lecturer extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function units() {
+        return $this->hasMany(Unit::class);
+    } 
 }
