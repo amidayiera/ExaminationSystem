@@ -84,16 +84,16 @@ class UnitsController extends Controller
 
         return view('units.viewLecturer')->with(compact('units', 'lecturers'));
     }
-    public function editLecturer(Request $request, $id = null){
+    public function editLecturer(Request $request, $lecturer_id = null){
         
         $lecturers = Lecturer::all();
         if($request->isMethod('post')) {
             $data =$request->all();
-            // echo "<pre> something something"; print_r($data);die;
-            Unit::where(['id'=>$id])->update(['id'=>$request['id'],'lecturer_id'=>$request['lecturer_id']]);
-            return redirect('/units/viewlecturer')->with('flash_message_success','Updated Successfully');
+            echo "<pre> something something"; print_r($data);die;
+            // Unit::where(['lecturer_id'=>$lecturer_id])->update(['id'=>$request['id'],'lecturer_id'=>$request['lecturer_id']]);
+            // return redirect('/units/viewlecturer')->with('flash_message_success','Updated Successfully');
         }
-        $unitDetails = Unit::where(['id'=>$id])->first();
+        $unitDetails = Unit::where(['lecturer_id'=>$lecturer_id])->first();
         return view('units.editLecturer')->with(compact('unitDetails','lecturers'));
     }
     
