@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Unit;
+use App\Lecturer;
 use Symfony\Component\Console\Input\Input;
 use App\Course;
 
@@ -54,6 +55,33 @@ class UnitsController extends Controller
         $units = Unit::get();
         $units = json_decode(json_encode($units));
 
-        return view('units.viewunit')->with(compact('units', 'courses'));
+        return view('units.viewUnit')->with(compact('units', 'courses'));
+    }
+
+    public function assignLecturer(Request $request) {
+        $lecturers = Lecturer::all();
+        $units = Unit::get();
+        $units = json_decode(json_encode($units));
+
+        if($request->isMethod('post')) {
+            // $data = $request->all();
+            // echo "<pre>"; print_r($data); die;
+            $unit  = new Unit;
+            $unit->unit_id = request('unit_id');
+            $unit->lecturer_id = request('lecturer_id');
+            // $courseBelongs = Course::all();
+            $unit->save();
+            return redirect('/units/viewlecturer')->with('flash_message_success','Unit Added successfully!');
+        }
+        return view('units.assignLecturer')->with(compact('lecturers','units'));
+    }
+    public function viewLecturers(){
+        $lecturers =Lecturer::get();
+        $lecturers = json_decode(json_encode($lecturers));
+
+        $units = Unit::get();
+        $units = json_decode(json_encode($units));
+
+        return view('units.viewLecturer')->with(compact('units', 'lecturers'));
     }
 }

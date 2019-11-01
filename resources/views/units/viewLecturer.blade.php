@@ -29,9 +29,12 @@
               <thead>
                 <tr>
                   {{-- <th>Course ID</th> --}}
-                  <th>First Name</th>
-                  <th>Last Name</th>
                   <th>Unit Name</th>
+                  <th width="15%">Unit Code</th>
+                  <th>Course Name</th>
+                  <th>Lecturer Name</th>
+
+                  <th>Created on</th>
                   <th width="20%">Action</th>
                 </tr>
               </thead>
@@ -42,11 +45,14 @@
                   <td>{{ $unit->unit_code }}</td>
                  {{-- <td>{{ $unit->course_id}}</td> --}}
                   <td>{{ $unit->course_id}}</td>
+                  <td>{{ $unit->lecturer_id}}</td>
                   <td>{{ $unit->created_at }}</td>
                   {{-- <td>{{ $oneCourse-> }}</td> --}}
-                  <td class="center"> <a href="{{ url('/units/editunit/' .$unit->id) }} " class="edit btn btn-primary btn-sm">Edit</a> 
-                    <a id="deleteUnitButton" href="{{ url('/units/deleteunit/' .$unit->id) }}" onclick="return confirm('Are you sure you want to delete this unit?')" class="edit btn btn-danger btn-sm">Delete</a> </td>
+                  <td class="center"> {{--<a href="{{ url('/units/editunit/' .$unit->id) }} " class="edit btn btn-primary btn-sm">--}}Edit</a> 
+                    {{--<a id="deleteUnitButton" href="{{ url('/units/deleteunit/' .$unit->id) }}" onclick="return confirm('Are you sure you want to delete this unit?')" class="edit btn btn-danger btn-sm">--}}Delete</a> </td>
                   </tr>
+               
+               
                 @endforeach
               </tbody>
             </table>

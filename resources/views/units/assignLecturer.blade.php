@@ -8,30 +8,30 @@
                 {{-- <div class="card-header">{{ __('Login') }}</div> --}}
                 <div class="card-header">Assign Lecturer</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ url('/lecturers/addlecturer') }}" id="addLecturer">
+                    <form method="POST" action="{{ url('/units/assignlecturer') }}" id="addLecturer">
                         @csrf
                         {{ csrf_field() }}
                         <div class="form-group row">
-                            <label for="course_id" class="col-md-4 col-form-label text-md-right">{{ __('Course') }}</label>
+                            <label for="unit_id" class="col-md-4 col-form-label text-md-right">{{ __('Unit') }}</label>
 
-                            {{-- <div class="col-md-6">
-                                <select class="form-control" name="course_id" id="course_id">
-                                    @foreach ($courses as $course)
-                                        <option value="{{ $course->course_id}}">{{$course->course_name}}</option>
+                            <div class="col-md-6">
+                                <select class="form-control" name="unit_id" id="unit_id">
+                                    @foreach ($units as $unit)
+                                        <option value="{{ $unit->id}}">{{$unit->unit_name}}</option>
                                     @endforeach
                                 </select>
-                            </div> --}}
+                            </div>
                         </div>
                         <div class="form-group row">
-                            <label for="course_id" class="col-md-4 col-form-label text-md-right">{{ __('Course') }}</label>
+                            <label for="lecturer_id" class="col-md-4 col-form-label text-md-right">{{ __('Lecturer') }}</label>
 
-                            {{-- <div class="col-md-6">
-                                <select class="form-control" name="course_id" id="course_id">
-                                    @foreach ($courses as $course)
-                                        <option value="{{ $course->course_id}}">{{$course->course_name}}</option>
+                            <div class="col-md-6">
+                                <select class="form-control" name="lecturer_id" id="lecturer_id">
+                                    @foreach ($lecturers as $lecturer)
+                                        <option value="{{ $lecturer->lecturer_id}}">{{$lecturer->first_name}}</option>
                                     @endforeach
                                 </select>
-                            </div> --}}
+                            </div> 
                         </div>
 
                         <div class="form-group row mb-0">
