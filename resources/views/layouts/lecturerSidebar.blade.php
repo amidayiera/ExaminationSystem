@@ -55,6 +55,9 @@
 
             <ul class="list-unstyled components">
                 <li>
+                    <a href="#">Students</a>
+                </li>
+                <li>
                   <a href="#">Students</a>
               </li>
               <li>

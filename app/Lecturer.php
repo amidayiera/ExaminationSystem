@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class Lecturer extends Model
@@ -37,6 +37,7 @@ class Lecturer extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    protected $primaryKey = 'id';
     public function units() {
         return $this->hasMany(Unit::class);
     } 

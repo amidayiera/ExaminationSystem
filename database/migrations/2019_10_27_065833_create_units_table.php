@@ -19,6 +19,7 @@ class CreateUnitsTable extends Migration
             $table->unsignedInteger('course_id');
             $table->string('unit_code');
             $table->string('unit_name');
+            $table->unsignedInteger('lecturer_id');
             $table->rememberToken();
             $table->timestamps();
   

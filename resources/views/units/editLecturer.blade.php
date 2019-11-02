@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group row">
-                            <label for="course_id" class="col-md-4 col-form-label text-md-right">{{ __('Unit') }}</label>
+                            <label for="course_id" class="col-md-4 col-form-label text-md-right">{{ __('unit') }}</label>
 
                             <div class="col-md-6">
                                 <select class="form-control" name="unit_id" id="unit_id">

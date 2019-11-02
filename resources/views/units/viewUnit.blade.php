@@ -29,9 +29,10 @@
               <thead>
                 <tr>
                   {{-- <th>Course ID</th> --}}
+                  <th>Course Name</th>
                   <th>Unit Name</th>
                   <th width="15%">Unit Code</th>
-                  <th>Course Name</th>
+                  <th>Lecturer Name</th>
 
                   <th>Created on</th>
                   <th width="20%">Action</th>
@@ -40,10 +41,10 @@
               <tbody>
                 @foreach ($units as $unit)
                 <tr class="gradeU">
+                  <td>{{ $unit->course_id}}</td>
                   <td>{{ $unit->unit_name }}</td>
                   <td>{{ $unit->unit_code }}</td>
-                 {{-- <td>{{ $unit->course_id}}</td> --}}
-                  <td>{{ $unit->course_id}}</td>
+                 <td>{{ $unit->lecturer_id}}</td>
                   <td>{{ $unit->created_at }}</td>
                   {{-- <td>{{ $oneCourse-> }}</td> --}}
                   <td class="center"> <a href="{{ url('/units/editunit/' .$unit->id) }} " class="edit btn btn-primary btn-sm">Edit</a> 

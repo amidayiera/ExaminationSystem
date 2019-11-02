@@ -50,7 +50,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar" class="fixed">
             <div class="sidebar-header">
-                <h3>Administrator</h3>
+            <h5 style="text-transform:uppercase;">{{ Auth::guard('admin')->user()->first_name}} {{ Auth::guard('admin')->user()->last_name}}</h4>
             </div>
 
             <ul class="list-unstyled components">
@@ -79,18 +79,7 @@
                     </ul>
                 </li>
                 <hr>
-                <li>
-                    <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Lecturers</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu2">
-                        <li>
-                            <a href="{{ url('units/assignlecturer') }}">Assign Lecturers</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('units/viewlecturer') }}">View Lecturers</a>
-                        </li>
-                    </ul>
-                </li>
-                <hr>
+               
                 <li>
                   <a href="#">Students</a>
               </li>
@@ -99,7 +88,7 @@
             </li>
             </ul>
         </nav>
-    {{-- </div> --}}
+    </div>
 
         <!-- Page Content  -->
         <div id="content">
@@ -116,7 +105,7 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
-                            {{-- <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link"  href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">
@@ -125,10 +114,8 @@
                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
-                            </li> --}}
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
                             </li>
+                        
                         </ul>
                     </div>
                 </div>

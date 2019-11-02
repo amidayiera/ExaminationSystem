@@ -10,6 +10,7 @@ class Unit extends Model
     // protected $fillable = [
     //     'course_id','unit_code','unit_name'
     // ];
+    protected $primaryKey = 'id';
     protected $guarded = [];
 
     public function course(){
@@ -18,9 +19,8 @@ class Unit extends Model
 
     }
     public function lecturer() {
-        // return $this->belongsTo(Lecturer::class);
-        return $this->belongsTo('App\Lecturer','lecturer_id');
-
+        return $this->belongsTo(Lecturer::class);
+        // return $this->belongsTo('App\Lecturer','lecturer_id');
     }
 }
 
