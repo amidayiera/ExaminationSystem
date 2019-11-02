@@ -20,7 +20,10 @@ class Unit extends Model
     }
     public function lecturer() {
         return $this->belongsTo(Lecturer::class);
-        // return $this->belongsTo('App\Lecturer','lecturer_id');
+        // return $this->belongsTo('App\Lecturer','id');
     }
+
+
+
 }
 

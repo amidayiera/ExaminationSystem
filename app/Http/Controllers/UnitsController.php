@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Unit;
 use App\Lecturer;
+use Session;
 use Symfony\Component\Console\Input\Input;
 use App\Course;
+use Illuminate\Support\Facades\Validator;
 
 class UnitsController extends Controller
 {
@@ -18,11 +20,25 @@ class UnitsController extends Controller
             $data = $request->all();
             // echo "<pre>"; print_r($data); die;
             // dd($data);
+            // $validator = Validator::make($data, [
+            //     'course_id'=>'required',
+            //     'unit_name'=>'required',
+            //     'unit_code'=>'required',
+            //     'lecturer_id'=>'required'
+            // ]);
+
+            // if ($validator->fails()) {
+            // Session::flash('error', $validator->messages()->first());
+            // return redirect()->back()->withInput();
+            // }
+        //    dd($data);
+    // Retrieve the validated input data...
+        // $validated = $request->validated();
             $unit  = new Unit;
             $unit->course_id = request('course_id');
             $unit->unit_name = request('unit_name');
             $unit->unit_code = request('unit_code');
-            // $unit->lecturer_id = request('lecturer_id');
+            $unit->lecturer_id = request('lecturer_id');
             $unit->save();
             
             return redirect('/units/viewunit')->with('flash_message_success','Successfully Added');
