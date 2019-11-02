@@ -12,7 +12,6 @@ class Lecturer extends Authenticatable
     protected $guard = 'lecturer';
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     // protected $fillable = [
@@ -22,7 +21,6 @@ class Lecturer extends Authenticatable
 
     /**
      * The attributes that should be hidden for arrays.
-     *
      * @var array
      */
     protected $hidden = [
