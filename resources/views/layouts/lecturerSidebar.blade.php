@@ -50,13 +50,14 @@
         <!-- Sidebar  -->
         <nav id="sidebar" class="fixed">
             <div class="sidebar-header">
-                <h3>Lecturer</h3>
+            <h3>Lecturer</h3>
             </div>
 
             <ul class="list-unstyled components">
                 <li>
-                    <a href="#">Students</a>
+                    <a href="#">Units</a>
                 </li>
+                <li></li>
                 <li>
                   <a href="#">Students</a>
               </li>
@@ -99,7 +100,7 @@
                                 <li class="nav-item dropdown">
 {{-- DISPLAY LECTURERS NAME ON NAVIGATION BAR --}}
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::guard('lecturer')->user()}} <span class="caret"></span>
+                                        <span class="caret"></span>
                                         </a>
         
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
