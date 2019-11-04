@@ -47,3 +47,4 @@ Route::view('/admin', 'admin');
 Route::view('/lecturer','lecturer');
 
 Route::get('/home', 'HomeController@index')->name('home');
+// Route::view('/questions','questions.create');

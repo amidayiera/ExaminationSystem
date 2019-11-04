@@ -50,6 +50,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar" class="fixed">
             <div class="sidebar-header">
+            <h4>Administrator</h4>
             <h5 style="text-transform:uppercase;">{{ Auth::guard('admin')->user()->first_name}} {{ Auth::guard('admin')->user()->last_name}}</h4>
             </div>
 
