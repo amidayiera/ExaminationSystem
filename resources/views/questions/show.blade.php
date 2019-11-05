@@ -14,15 +14,15 @@
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>@lang('global.questions.fields.question')</th>
-                            <td>{!! $question->question !!}</td>
+                            {{-- <td>{!! $question->question !!}</td> --}}
                         </tr>
                         <tr>
                             <th>@lang('global.questions.fields.question-image')</th>
-                            <td>@if($question->question_image)<a href="{{ asset('uploads/' . $question->question_image) }}" target="_blank"><img src="{{ asset('uploads/thumb/' . $question->question_image) }}"/></a>@endif</td>
+                            {{-- <td>@if($question->question_image)<a href="{{ asset('uploads/' . $question->question_image) }}" target="_blank"><img src="{{ asset('uploads/thumb/' . $question->question_image) }}"/></a>@endif</td> --}}
                         </tr>
                         <tr>
                             <th>@lang('global.questions.fields.score')</th>
-                            <td>{{ $question->score }}</td>
+                            {{-- <td>{{ $question->score }}</td> --}}
                         </tr>
                     </table>
                 </div>
@@ -37,7 +37,7 @@
 <div class="tab-content">
     
 <div role="tabpanel" class="tab-pane active" id="questionsoptions">
-<table class="table table-bordered table-striped {{ count($questions_options) > 0 ? 'datatable' : '' }}">
+{{-- <table class="table table-bordered table-striped {{ count($questions_options) > 0 ? 'datatable' : '' }}"> --}}
     <thead>
         <tr>
             <th>@lang('global.questions-options.fields.question')</th>
@@ -53,10 +53,10 @@
 
     <tbody>
         @if (count($questions_options) > 0)
-            @foreach ($questions_options as $questions_option)
+            {{-- @foreach ($questions_options as $questions_option)
                 <tr data-entry-id="{{ $questions_option->id }}">
                     <td>{{ $questions_option->question->question or '' }}</td>
-                                <td>{!! $questions_option->option_text !!}</td>
+                                <td>{!! $questions_option->option_text !!}</td> --}}
                                 <td>{{ Form::checkbox("correct", 1, $questions_option->correct == 1 ? true : false, ["disabled"]) }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
@@ -75,7 +75,7 @@
                                     {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
                                                                 </td>
-                                @else
+                                {{-- @else --}}
                                 <td>
                                     @can('questions_option_view')
                                     <a href="{{ route('admin.questions_options.show',[$questions_option->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
@@ -93,14 +93,14 @@
                                     {!! Form::close() !!}
                                     @endcan
                                 </td>
-                                @endif
+                                {{-- @endif --}}
                 </tr>
-            @endforeach
-        @else
+            {{-- @endforeach --}}
+        {{-- @else --}}
             <tr>
                 <td colspan="7">@lang('global.app_no_entries_in_table')</td>
             </tr>
-        @endif
+        {{-- @endif --}}
     </tbody>
 </table>
 </div>

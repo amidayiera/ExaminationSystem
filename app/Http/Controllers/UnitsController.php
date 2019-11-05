@@ -79,4 +79,17 @@ class UnitsController extends Controller
 
         return view('units.viewUnit')->with(compact('units', 'courses','lecturers'));
     }
+    
+    public function displayIndividual(){
+        $courses = Course::get();
+        $courses = json_decode(json_encode($courses));
+
+        $lecturers = Lecturer::get();
+        $lecturers = json_decode(json_encode($lecturers));
+
+        $units = Unit::get();
+        $units = json_decode(json_encode($units));
+
+        return view('units.displayIndividual')->with(compact('units', 'courses','lecturers'));
+    }
 }

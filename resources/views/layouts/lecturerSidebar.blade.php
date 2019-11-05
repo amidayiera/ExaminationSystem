@@ -207,7 +207,8 @@ ul.CTAs a {
         <nav id="sidebar">
             <div class="sidebar-header">
                 <h5>Lecturer</h5>
-                <h4>Lecturer's name</h4>
+            <h4 style="text-transform:uppercase;">Lecturer's name</h5>
+
             </div>
 
             <ul class="list-unstyled components">
@@ -242,12 +243,20 @@ ul.CTAs a {
                     </ul>
                 </li> --}}
                 <li>
-                        <a href="#">Units</a>
+                <a href="{{url('units/displayIndividual')}}">Units</a>
                     </li>
                     <hr>
                     <li>
-                        <a href="#">Questions</a>
-                    </li>
+                            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Questions</a>
+                            <ul class="collapse list-unstyled" id="pageSubmenu">
+                                <li>
+                                    <a href="{{ url('questions/create') }}">Create New Question</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('questions/show') }}">View Questions</a>
+                                </li>
+                            </ul>
+                        </li>
                     <hr>
                 <li>
                     <a href="#">Students</a>
@@ -273,10 +282,17 @@ ul.CTAs a {
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
-                           
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
+                                <a class="nav-link"  href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();">
+                                 {{ __('Logout') }}</a>
+                                 
+                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </li>
+                        
                         </ul>
                     </div>
                 </div>

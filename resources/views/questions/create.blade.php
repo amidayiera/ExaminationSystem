@@ -1,12 +1,13 @@
 @extends('layouts.lecturerSidebar')
 
 @section('content')
-    <h3 class="page-title">@lang('global.questions.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.questions.store'], 'files' => true,]) !!}
-
+<div class="container">
+    {{-- <h3 class="page-title">@lang('questions.title')</h3> --}}
+    {{-- {!! Form::open(['method' => 'POST', 'route' => ['questions.store'], 'files' => true,]) !!} --}}
+    {!! Form::open(['method' => 'POST','files' => true,]) !!}
     <div class="panel panel-default">
         <div class="panel-heading">
-            @lang('global.app_create')
+            {{-- @lang('app_create') --}}
         </div>
         
         <div class="panel-body">
@@ -22,6 +23,7 @@
                     @endif
                 </div>
             </div>
+            {{-- <hr> --}}
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('score', 'Score*', ['class' => 'control-label']) !!}
@@ -34,8 +36,9 @@
                     @endif
                 </div>
             </div>
+            <hr>
             <div class="row">
-                <div class="col-xs-12 form-group">
+                {{-- <div class="col-xs-12 form-group">
                     {!! Form::label('tests', 'Tests', ['class' => 'control-label']) !!}
                     {!! Form::select('tests[]', $tests, old('tests'), ['class' => 'form-control select2', 'multiple' => 'multiple']) !!}
                     <p class="help-block"></p>
@@ -44,12 +47,11 @@
                             {{ $errors->first('tests') }}
                         </p>
                     @endif
-                </div>
+                </div> --}}
             </div>
-
         </div>
     </div>
-
+    
     @for ($question=1; $question<=4; $question++)
     <div class="panel panel-default">
         <div class="panel-body">
@@ -65,6 +67,7 @@
                     @endif
                 </div>
             </div>
+            {{-- <hr> --}}
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('correct_' . $question, 'Correct', ['class' => 'control-label']) !!}
@@ -78,11 +81,13 @@
                     @endif
                 </div>
             </div>
+            <hr>
         </div>
     </div>
     @endfor
 
-    {!! Form::submit(trans('global.app_save'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('Save'), ['class' => 'btn btn-success']) !!}
     {!! Form::close() !!}
+</div>
 @stop
 

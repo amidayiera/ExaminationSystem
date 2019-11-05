@@ -5,7 +5,7 @@
     <h3 class="page-title">@lang('global.questions.title')</h3>
     @can('question_create')
     <p>
-        <a href="{{ route('admin.questions.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
+        <a href="{{ route('questions.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
         
     </p>
     @endcan

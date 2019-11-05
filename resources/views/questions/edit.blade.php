@@ -3,7 +3,7 @@
 @section('content')
     <h3 class="page-title">@lang('global.questions.title')</h3>
     
-    {!! Form::model($question, ['method' => 'PUT', 'route' => ['admin.questions.update', $question->id], 'files' => true,]) !!}
+    {!! Form::model($question, ['method' => 'PUT', 'route' => ['questions.update', $question->id], 'files' => true,]) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">

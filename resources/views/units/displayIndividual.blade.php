@@ -1,4 +1,4 @@
-@extends('layouts.adminSidebar')
+@extends('layouts.lecturerSidebar')
 
 @section('content')
 <div id="content-header">
@@ -30,27 +30,21 @@
                 <tr>
                   {{-- <th>Course ID</th> --}}
                   <th>Course Name</th>
+                  <th>Course Code</th>
                   <th>Unit Name</th>
                   <th width="15%">Unit Code</th>
-                  <th>Lecturer Name</th>
 
-                  <th>Created on</th>
-                  <th width="20%">Action</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($units as $unit)
-                <tr class="gradeU">
+                {{-- <tr class="gradeU">
                   <td>{{ $unit->course_id}}</td>
+                  <td>{{$unit->course_id}}</td>
                   <td>{{ $unit->unit_name }}</td>
                   <td>{{ $unit->unit_code }}</td>
-                 <td>{{ $unit->lecturer_id}}</td>
-                  <td>{{ $unit->created_at }}</td>
-                  {{-- <td>{{ $oneCourse-> }}</td> --}}
-                  <td class="center"> <a href="{{ url('/units/editunit/' .$unit->id) }} " class="edit btn btn-primary btn-sm">Edit</a> 
-                    <a id="deleteUnitButton" href="{{ url('/units/deleteunit/' .$unit->id) }}" onclick="return confirm('Are you sure you want to delete this unit?')" class="edit btn btn-danger btn-sm">Delete</a> </td>
-                  </tr>
-               
+                </tr>
+                --}}
                
                 @endforeach
               </tbody>

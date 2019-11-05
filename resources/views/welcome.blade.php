@@ -73,11 +73,14 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a> --}}
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        {{-- <a href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
-                        @endif
+                        @endif --}}
+                    <a href="{{ url('admin/login')}}">Administrator</a>
+                    <a href="{{ url('lecturer/login')}}">Lecturer</a>
+                    <a href="{{ route('login')}}">Student</a>
                     @endauth
                 </div>
             @endif

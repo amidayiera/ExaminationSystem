@@ -34,17 +34,19 @@ Route::match(['get','post'], '/courses/deletecourse/{course_id}', 'CoursesContro
 Route::get('/courses/viewcourse','CoursesController@viewCourses');
 
 Route::match(['get','post'], '/units/addunit', 'UnitsController@addUnit');
-// Route::match(['get','post'], '/units/assignlecturer', 'UnitsController@assignLecturer');
 Route::match(['get','post'], '/units/editunit/{id}', 'UnitsController@editUnit');
-// Route::match(['get','post'], '/units/editlecturer/{id}', 'UnitsController@editLecturer');
 Route::match(['get','post'], '/units/deleteunit/{id}', 'UnitsController@deleteUnit');
-// Route::match(['get','post'], '/units/deletelecturer/{id}', 'UnitsController@deleteLecturer');
 
-// Route::get('/units/viewlecturer','UnitsController@viewLecturers');
 Route::get('/units/viewunit','UnitsController@viewUnits');
+Route::get('/units/displayIndividual','UnitsController@displayIndividual');
 
 Route::view('/admin', 'admin');
 Route::view('/lecturer','lecturer');
 
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::view('/questions','questions.create');
+// Route::resource('questions','QuestionsController');
+
+Route::view('/questions/create','questions.create');
+Route::view('/questions/show','questions.show');
+Route::view('/questions/index','questions.index');
