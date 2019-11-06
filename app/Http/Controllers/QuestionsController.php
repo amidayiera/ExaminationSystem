@@ -28,9 +28,9 @@ class QuestionsController extends Controller
         // }
 
         if (request('show_deleted') == 1) {
-            if (! Gate::allows('question_delete')) {
-                return abort(401);
-            }
+            // if (! Gate::allows('question_delete')) {
+            //     return abort(401);
+            // }
             $questions = Question::onlyTrashed()->get();
         } else {
             $questions = Question::all();
@@ -46,9 +46,9 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('question_create')) {
-            return abort(401);
-        }
+        // if (! Gate::allows('question_create')) {
+        //     return abort(401);
+        // }
         $tests = \App\Test::get()->pluck('title', 'id');
         return view('questions.create', compact('tests'));
     }
@@ -61,9 +61,9 @@ class QuestionsController extends Controller
      */
     public function store(StoreQuestionsRequest $request)
     {
-        if (! Gate::allows('question_create')) {
-            return abort(401);
-        }
+        // if (! Gate::allows('question_create')) {
+        //     return abort(401);
+        // }
         $request = $this->saveFiles($request);
         $question = Question::create($request->all());
         $question->tests()->sync(array_filter((array)$request->input('tests')));
@@ -91,9 +91,9 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        if (! Gate::allows('question_edit')) {
-            return abort(401);
-        }
+        // if (! Gate::allows('question_edit')) {
+        //     return abort(401);
+        // }
         $question = Question::findOrFail($id);
         $tests = \App\Test::get()->pluck('title', 'id');
 
@@ -109,9 +109,9 @@ class QuestionsController extends Controller
      */
     public function update(UpdateQuestionsRequest $request, $id)
     {
-        if (! Gate::allows('question_edit')) {
-            return abort(401);
-        }
+        // if (! Gate::allows('question_edit')) {
+        //     return abort(401);
+        // }
         $request = $this->saveFiles($request);
         $question = Question::findOrFail($id);
         $question->update($request->all());
@@ -131,9 +131,9 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        if (! Gate::allows('question_view')) {
-            return abort(401);
-        }
+        // if (! Gate::allows('question_view')) {
+        //     return abort(401);
+        // }
         $questions_options = \App\QuestionsOption::where('question_id', $id)->get();$tests = \App\Test::whereHas('questions',
                     function ($query) use ($id) {
                         $query->where('id', $id);
@@ -153,9 +153,9 @@ class QuestionsController extends Controller
      */
     public function destroy($id)
     {
-        if (! Gate::allows('question_delete')) {
-            return abort(401);
-        }
+        // if (! Gate::allows('question_delete')) {
+        //     return abort(401);
+        // }
         $question = Question::findOrFail($id);
         $question->delete();
 

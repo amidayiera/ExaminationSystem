@@ -14,11 +14,13 @@ class CreateQuestionsTable extends Migration
     public function up()
     {
         Schema::create('questions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('question_id');
             $table->text('question');
             $table->integer('score')->nullable();
             $table->softDeletes();
             $table->timestamps();
+            $table->index(['deleted_at']);
+
         });
     }
 

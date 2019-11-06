@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Question extends Model
 {
     use SoftDeletes;
+    protected $table = "questions";
 
-    protected $fillable = ['question', 'question_image', 'score'];
+    protected $guarded = [];
     
 
     /**

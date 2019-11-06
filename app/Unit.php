@@ -22,7 +22,9 @@ class Unit extends Model
         return $this->belongsTo(Lecturer::class);
         // return $this->belongsTo('App\Lecturer','id');
     }
-
+    public function test() {
+        return $this->hasOne('App\Test');
+    }
 
 
 }

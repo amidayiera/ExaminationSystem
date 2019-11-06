@@ -46,7 +46,9 @@ Route::view('/lecturer','lecturer');
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::view('/questions','questions.create');
 // Route::resource('questions','QuestionsController');
+Route::match(['get','post'], '/questions/create', 'QuestionsController@create');
 
-Route::view('/questions/create','questions.create');
-Route::view('/questions/show','questions.show');
-Route::view('/questions/index','questions.index');
+Route::resource('questions', 'QuestionsController');
+Route::post('questions_mass_destroy', ['uses' => 'QuestionsController@massDestroy', 'as' => 'questions.mass_destroy']);
+Route::post('questions_restore/{id}', ['uses' => 'QuestionsController@restore', 'as' => 'questions.restore']);
+Route::delete('questions_perma_del/{id}', ['uses' => 'QuestionsController@perma_del', 'as' => 'questions.perma_del']);

@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('score', 'Score*', ['class' => 'control-label']) !!}
-                    {!! Form::number('score', old('score', 1), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::number('score', old('score', 2), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('score'))
                         <p class="help-block">
@@ -37,8 +37,8 @@
                 </div>
             </div>
             <hr>
-            <div class="row">
-                {{-- <div class="col-xs-12 form-group">
+            {{-- <div class="row">
+                <div class="col-xs-12 form-group">
                     {!! Form::label('tests', 'Tests', ['class' => 'control-label']) !!}
                     {!! Form::select('tests[]', $tests, old('tests'), ['class' => 'form-control select2', 'multiple' => 'multiple']) !!}
                     <p class="help-block"></p>
@@ -47,8 +47,8 @@
                             {{ $errors->first('tests') }}
                         </p>
                     @endif
-                </div> --}}
-            </div>
+                </div>
+            </div> --}}
         </div>
     </div>
     
@@ -56,7 +56,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
-                <div class="col-xs-12 form-group">
+                <div class="col-s-4 form-group">
                     {!! Form::label('option_text_' . $question, 'Option text*', ['class' => 'control-label']) !!}
                     {!! Form::textarea('option_text_' . $question, old('option_text'), ['class' => 'form-control ', 'rows' => 3]) !!}
                     <p class="help-block"></p>
