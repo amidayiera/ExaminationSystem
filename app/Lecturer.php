@@ -14,10 +14,10 @@ class Lecturer extends Authenticatable
      * The attributes that are mass assignable.
      * @var array
      */
-    // protected $fillable = [
-    //     'first_name','last_name', 'email', 'password',
-    // ];
-    protected $guarded = [];
+    protected $fillable = [
+        'first_name','last_name', 'email', 'password',
+    ];
+    // protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -36,9 +36,10 @@ class Lecturer extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'lecturer_id';
 
     public function units() {
-        return $this->hasMany(Unit::class);
+        // return $this->hasMany(Unit::class);
+        return $this->hasMany('App\Unit', 'lecturer_id');
     } 
 }

@@ -1,19 +1,20 @@
 @inject('request', 'Illuminate\Http\Request')
 @extends('layouts.lecturerSidebar')
 
+
 @section('content')
-    <h3 class="page-title">@lang('global.questions.title')</h3>
-    @can('question_create')
+    <h3 class="page-title">@lang('global.tests.title')</h3>
+    @can('test_create')
     <p>
-        <a href="{{ route('questions.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
+        <a href="{{ route('tests.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
         
     </p>
     @endcan
 
     <p>
         <ul class="list-inline">
-            <li><a href="{{ route('questions.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">All</a></li> |
-            <li><a href="{{ route('questions.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">Trash</a></li>
+            <li><a href="{{ route('tests.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">All</a></li> |
+            <li><a href="{{ route('tests.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">Trash</a></li>
         </ul>
     </p>
     
@@ -24,16 +25,19 @@
         </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped {{ count($questions) > 0 ? 'datatable' : '' }} @can('question_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="table table-bordered table-striped {{ count($tests) > 0 ? 'datatable' : '' }} @can('test_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
-                        @can('question_delete')
+                        @can('test_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
 
-                        <th>@lang('global.questions.fields.question')</th>
-                        <th>@lang('global.questions.fields.question-image')</th>
-                        <th>@lang('global.questions.fields.score')</th>
+                        <th>@lang('global.tests.fields.course')</th>
+                        <th>@lang('global.tests.fields.lesson')</th>
+                        <th>@lang('global.tests.fields.title')</th>
+                        <th>@lang('global.tests.fields.description')</th>
+                        <th>@lang('global.tests.fields.questions')</th>
+                        <th>@lang('global.tests.fields.published')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -43,47 +47,50 @@
                 </thead>
                 
                 <tbody>
-                    @if (count($questions) > 0)
-                        @foreach ($questions as $question)
-                            <tr data-entry-id="{{ $question->id }}">
-                                @can('question_delete')
+                    @if (count($tests) > 0)
+                        @foreach ($tests as $test)
+                            <tr data-entry-id="{{ $test->id }}">
+                                @can('test_delete')
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan
 
-                                <td>{!! $question->question !!}</td>
-                                <td>@if($question->question_image)<a href="{{ asset('uploads/' . $question->question_image) }}" target="_blank"><img src="{{ asset('uploads/thumb/' . $question->question_image) }}"/></a>@endif</td>
-                                <td>{{ $question->score }}</td>
+                                <td>{{ $test->course->title or '' }}</td>
+                                <td>{{ $test->lesson->title or '' }}</td>
+                                <td>{{ $test->title }}</td>
+                                <td>{!! $test->description !!}</td>
+                                <td>{{ $test->questions->count() }}</td>
+                                <td>{{ Form::checkbox("published", 1, $test->published == 1 ? true : false, ["disabled"]) }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'POST',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['questions.restore', $question->id])) !!}
+                                        'route' => ['tests.restore', $test->id])) !!}
                                     {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
                                     {!! Form::close() !!}
                                                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['questions.perma_del', $question->id])) !!}
+                                        'route' => ['tests.perma_del', $test->id])) !!}
                                     {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
                                                                 </td>
                                 @else
                                 <td>
-                                    @can('question_view')
-                                    <a href="{{ route('questions.show',[$question->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    @can('test_view')
+                                    <a href="{{ route('tests.show',[$test->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
                                     @endcan
-                                    @can('question_edit')
-                                    <a href="{{ route('questions.edit',[$question->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    @can('test_edit')
+                                    <a href="{{ route('tests.edit',[$test->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
                                     @endcan
-                                    @can('question_delete')
+                                    @can('test_delete')
 {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                        'route' => ['questions.destroy', $question->id])) !!}
+                                        'route' => ['tests.destroy', $test->id])) !!}
                                     {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
                                     @endcan
@@ -93,7 +100,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="7">@lang('global.app_no_entries_in_table')</td>
+                            <td colspan="10">@lang('global.app_no_entries_in_table')</td>
                         </tr>
                     @endif
                 </tbody>
@@ -104,8 +111,8 @@
 
 @section('javascript') 
     <script>
-        @can('question_delete')
-            @if ( request('show_deleted') != 1 ) window.route_mass_crud_entries_destroy = '{{ route('questions.mass_destroy') }}'; @endif
+        @can('test_delete')
+            @if ( request('show_deleted') != 1 ) window.route_mass_crud_entries_destroy = '{{ route('tests.mass_destroy') }}'; @endif
         @endcan
 
     </script>

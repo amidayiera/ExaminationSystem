@@ -38,14 +38,12 @@
               </thead>
               <tbody>
                 @foreach ($units as $unit)
-                {{-- <tr class="gradeU">
+                <tr class="gradeU">
                   <td>{{ $unit->course_id}}</td>
                   <td>{{$unit->course_id}}</td>
                   <td>{{ $unit->unit_name }}</td>
                   <td>{{ $unit->unit_code }}</td>
-                </tr>
-                --}}
-               
+                </tr> 
                 @endforeach
               </tbody>
             </table>

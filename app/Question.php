@@ -29,7 +29,6 @@ class Question extends Model
 
     public function units()
     {
-        return $this->belongsToMany(Test::class, 'question_test');
+        return $this->belongsToMany(Unit::class, 'question_test');
     }
-
 }

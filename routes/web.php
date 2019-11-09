@@ -52,3 +52,16 @@ Route::resource('questions', 'QuestionsController');
 Route::post('questions_mass_destroy', ['uses' => 'QuestionsController@massDestroy', 'as' => 'questions.mass_destroy']);
 Route::post('questions_restore/{id}', ['uses' => 'QuestionsController@restore', 'as' => 'questions.restore']);
 Route::delete('questions_perma_del/{id}', ['uses' => 'QuestionsController@perma_del', 'as' => 'questions.perma_del']);
+
+
+Route::resource('questions_options', 'QuestionsOptionsController');
+Route::post('questions_options_mass_destroy', ['uses' => 'QuestionsOptionsController@massDestroy', 'as' => 'questions_options.mass_destroy']);
+Route::post('questions_options_restore/{id}', ['uses' => 'QuestionsOptionsController@restore', 'as' => 'questions_options.restore']);
+Route::delete('questions_options_perma_del/{id}', ['uses' => 'QuestionsOptionsController@perma_del', 'as' => 'questions_options.perma_del']);
+
+Route::resource('tests', 'TestsController');
+Route::post('tests_mass_destroy', ['uses' => 'TestsController@massDestroy', 'as' => 'tests.mass_destroy']);
+Route::post('tests_restore/{id}', ['uses' => 'TestsController@restore', 'as' => 'tests.restore']);
+Route::delete('tests_perma_del/{id}', ['uses' => 'TestsController@perma_del', 'as' => 'tests.perma_del']);
+Route::post('/spatie/media/upload', 'SpatieMediaController@create')->name('media.upload');
+Route::post('/spatie/media/remove', 'SpatieMediaController@destroy')->name('media.remove');

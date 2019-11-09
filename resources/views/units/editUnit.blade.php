@@ -16,8 +16,9 @@
 
                             <div class="col-md-6">
                                 <select class="form-control" name="course_id" id="course_id">
+                                    <?php $selectedvalue = $post->course_id?>
                                     @foreach ($courses as $course)
-                                        <option value="{{ $course->course_id}}">{{$course->course_name}}</option>
+                                        <option value="{{ $course->course_id}} "{{ $selectedvalue == $value['id']?'selected="selected"':'' }}>{{$course->course_name}}</option>
                                     @endforeach
                                 </select>
                             </div>

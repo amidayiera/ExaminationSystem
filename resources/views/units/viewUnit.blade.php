@@ -28,28 +28,30 @@
             <table id="example" class="table table-striped table-bordered" style="width:100%">
               <thead>
                 <tr>
-                  {{-- <th>Course ID</th> --}}
+                  <th  width="10%">Course Code</th>
                   <th>Course Name</th>
+                  <th width="10%">Unit Code</th>
                   <th>Unit Name</th>
-                  <th width="15%">Unit Code</th>
                   <th>Lecturer Name</th>
 
                   <th>Created on</th>
-                  <th width="20%">Action</th>
+                  <th width="10%">Action</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($units as $unit)
                 <tr class="gradeU">
-                  <td>{{ $unit->course_id}}</td>
-                  <td>{{ $unit->unit_name }}</td>
+                  <td>{{ $unit->course->course_code }}</td>
+                  <td>{{ $unit->course->course_name }}</td>
                   <td>{{ $unit->unit_code }}</td>
-                 <td>{{ $unit->lecturer_id}}</td>
-                  <td>{{ $unit->created_at }}</td>
+                  <td>{{ $unit->unit_name }}</td>
+                  <td>{{ $unit->lecturer->first_name}} {{ $unit->lecturer->last_name}}</td>
+                  <td>{{ date ('M j, Y', strtotime($unit->created_at)) }}</td>
                   {{-- <td>{{ $oneCourse-> }}</td> --}}
                   <td class="center"> <a href="{{ url('/units/editunit/' .$unit->id) }} " class="edit btn btn-primary btn-sm">Edit</a> 
                     <a id="deleteUnitButton" href="{{ url('/units/deleteunit/' .$unit->id) }}" onclick="return confirm('Are you sure you want to delete this unit?')" class="edit btn btn-danger btn-sm">Delete</a> </td>
-                  </tr>
+                </tr> 
+                  {{-- <td>{{ substr($unit->body, 0, 50) }} {{ strlen($post->body) > 50?"...": ""}}</td> --}}
                
                
                 @endforeach
