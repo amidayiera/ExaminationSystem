@@ -28,7 +28,7 @@ class ExamsController extends Controller
     }
 
     public function editExam(Request $request, $exam_id = null){
-      $units = Unit::all();
+      $unit = Unit::all();
         if($request->isMethod('post')) {
             $data =$request->all();
             // echo "<pre> something something"; print_r($data);die;
@@ -36,7 +36,7 @@ class ExamsController extends Controller
             return redirect('/exams/viewexam')->with('flash_message_success','Exam Updated');
         }
         $examDetails = Exam::where(['exam_id'=>$exam_id])->first();
-        return view('exams.editExam')->with(compact('examDetails','units'));
+        return view('exams.editExam')->with(compact('examDetails','unit'));
     }
 
     public function deleteExam($exam_id=null){
@@ -47,14 +47,14 @@ class ExamsController extends Controller
     }
 
     public function viewExams(){
-        $units = Unit::all();
+        $unit = Unit::all();
         $exams = Exam::all();
-        $exams = Exam::with('units')->get();
+        $exams = Exam::with('unit')->get();
         
         // dd($exams);
         $exams = json_decode(json_encode($exams));
 
-        return view('exams.viewExam')->with(compact('exams','units'));
+        return view('exams.viewExam')->with(compact('exams','unit'));
     }
     
 }

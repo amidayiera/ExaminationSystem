@@ -2,21 +2,23 @@
 
 @section('content')
 <div class="container">
-    {!! Form::open(['method' => 'POST', 'route' => ['questions.store'], 'files' => true,]) !!}
-    {!! Form::open(['method' => 'POST','files' => true,]) !!}
+    <h3>Create New Question</h3>
+    <hr>
+    {!! Form::open(['method' => 'POST', 'action' => 'QuestionsController@addQuestion']) !!}
+    {!! Form::open(['method' => 'POST']) !!}
 
     <div class="row">
-            <div class="form-group">
-                {!! Form::label('exams', 'Exams', ['class' => 'control-label']) !!}
-                {!! Form::select('exams[]', $exams, old('exams'), ['class' => 'form-control select2', 'multiple' => 'multiple']) !!}
-                <p class="help-block"></p>
-                @if($errors->has('exams'))
-                    <p class="help-block">
-                        {{ $errors->first('exams') }}
-                    </p>
-                @endif
-            </div>
+        <div class="form-group">
+            {!! Form::label('exams', 'Exams', ['class' => 'control-label']) !!}
+            {!! Form::select('exams', $exams, old('exams'), ['class' => 'form-control select2']) !!}
+            <p class="help-block"></p>
+            @if($errors->has('exams'))
+                <p class="help-block">
+                    {{ $errors->first('exams') }}
+                </p>
+            @endif
         </div>
+    </div>
     <div class="panel panel-default">
         <div class="panel-heading">
         </div>

@@ -254,58 +254,8 @@ ul.CTAs a {
             </div>
 
             <ul class="list-unstyled components">
-                
-            <li>
-                <a href="{{ url('/units/viewUnit') }}">
-                    <i class="fa fa-gears"></i>Lessons
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('questions.index') }}">
-                    <i class="fa fa-question"></i>Questions
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('questions_options.index') }}">
-                    <i class="fa fa-gears"></i>Questions Options
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('tests.index') }}">
-                    <i class="fa fa-gears"></i>Tests
-                </a>
-            </li>
-            {{-- @endcan --}}
-                {{-- <li>
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">Home 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 3</a>
-                        </li>
-                    </ul>
-                </li> --}}
-               
-                {{-- <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>
-                </li> --}}
-                <hr>
+       
+
                 <li>
                     <a href="{{url('units/displayIndividual')}}">Units</a>
                 </li>

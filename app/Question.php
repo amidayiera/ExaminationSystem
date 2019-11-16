@@ -10,8 +10,10 @@ class Question extends Model
     use SoftDeletes;
     protected $table = "questions";
 
-    protected $guarded = [];
-    
+    // protected $guarded = [];
+    protected $fillable = [
+        'exam_id','question_id','question','score'
+    ];
 
     /**
      * Set attribute to money format

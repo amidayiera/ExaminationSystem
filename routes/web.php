@@ -50,14 +50,18 @@ Route::view('/admin', 'admin');
 Route::view('/lecturer','lecturer');
 
 Route::get('/home', 'HomeController@index')->name('home');
-// Route::view('/questions','questions.create');
-// Route::resource('questions','QuestionsController');
-Route::match(['get','post'], '/questions/create', 'QuestionsController@create');
 
-Route::resource('questions', 'QuestionsController');
-Route::post('questions_mass_destroy', ['uses' => 'QuestionsController@massDestroy', 'as' => 'questions.mass_destroy']);
-Route::post('questions_restore/{id}', ['uses' => 'QuestionsController@restore', 'as' => 'questions.restore']);
-Route::delete('questions_perma_del/{id}', ['uses' => 'QuestionsController@perma_del', 'as' => 'questions.perma_del']);
+Route::match(['get','post'], '/questions/create', 'QuestionsController@addQuestion');
+Route::match(['get','post'], '/questions/editquestion/{question_id}', 'QuestionsController@editQuestoin');
+Route::match(['get','post'], '/questions/deletequestion/{question_id}', 'QuestionsController@deleteQuestion');
+
+Route::get('/questions/viewquestion','QuestionsController@viewQuestions');
+
+
+// Route::resource('questions', 'QuestionsController');
+// Route::post('questions_mass_destroy', ['uses' => 'QuestionsController@massDestroy', 'as' => 'questions.mass_destroy']);
+// Route::post('questions_restore/{id}', ['uses' => 'QuestionsController@restore', 'as' => 'questions.restore']);
+// Route::delete('questions_perma_del/{id}', ['uses' => 'QuestionsController@perma_del', 'as' => 'questions.perma_del']);
 
 
 Route::resource('questions_options', 'QuestionsOptionsController');

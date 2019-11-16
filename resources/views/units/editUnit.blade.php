@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Edit Unit</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ url('/units/editunit/'. $unitDetails->id) }}" id="editUnit">
+                    <form method="POST" action="{{ url('/units/editunit/'. $unitDetails->unit_id) }}" id="editUnit">
                         @csrf
                         {{ csrf_field() }}
 
@@ -16,9 +16,8 @@
 
                             <div class="col-md-6">
                                 <select class="form-control" name="course_id" id="course_id">
-                                    <?php $selectedvalue = $post->course_id?>
                                     @foreach ($courses as $course)
-                                        <option value="{{ $course->course_id}} "{{ $selectedvalue == $value['id']?'selected="selected"':'' }}>{{$course->course_name}}</option>
+                                        <option value="{{ $course->course_id}} ">{{$course->course_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -44,7 +43,7 @@
                             <div class="col-md-6">
                                 <select class="form-control" name="lecturer_id" id="lecturer_id">
                                     @foreach ($lecturers as $lecturer)
-                                        <option value="{{ $lecturer->lecturer_id}}">{{$lecturer->first_name}}</option>
+                                        <option value="{{ $lecturer->lecturer_id}}">{{$lecturer->first_name}} {{$lecturer->last_name}}</option>
                                     @endforeach
                                 </select>
                             </div> 

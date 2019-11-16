@@ -3,7 +3,7 @@
 @section('content')
 <div id="content-header">
     {{-- <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Courses</a> </div> --}}
-    <h2>Exams</h2>
+    <h2>Questions</h2>
     @if(Session::has('flash_message_error'))
         <div class="alert alert-error alert-block">
             <button type="button" class="close" data-dismiss="alert">x</button>
@@ -28,24 +28,26 @@
             <table id="example" class="table table-striped table-bordered" style="width:100%">
               <thead>
                 <tr>
-                  <th width="10%">Unit Code</th>
+                  <th  width="10%">Unit Code</th>
                   <th>Unit Name</th>
-                  <th>Exam Title</th>
+                  <th width="10%">Exam Title</th>
+                  <th>Question</th>
 
                   <th>Created on</th>
                   <th width="10%">Action</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($exams as $exam)
+                @foreach ($questions as $question)
                 <tr class="gradeU">
-                  <td>{{ $exam->unit->unit_code }}</td>
-                  <td>{{ $exam->unit->unit_name }}</td>
-                  <td>{{ $exam->exam_title}}</td>
-                  <td>{{ date ('M j, Y', strtotime($exam->created_at)) }}</td>
+                  <td>{{ $question->unit->unit_code }}</td>
+                  <td>{{ $question->unit->unit_name }}</td>
+                  <td>{{ $question->exam->exam_title }}</td>
+                  <td>{{ $question->question }}</td>
+                  <td>{{ date ('M j, Y', strtotime($question->created_at)) }}</td>
                   {{-- <td>{{ $oneCourse-> }}</td> --}}
-                  <td class="center"> <a href="{{ url('/exams/editexam/' .$exam->exam_id) }} " class="edit btn btn-primary btn-sm">Edit</a> 
-                    <a id="deleteUnitButton" href="{{ url('/exams/deleteexam/' .$exam->exam_id) }}" onclick="return confirm('Are you sure you want to delete this exam?')" class="edit btn btn-danger btn-sm">Delete</a> </td>
+                  <td class="center"> <a href="{{ url('/units/editunit/' .$question->question_id) }} " class="edit btn btn-primary btn-sm">Edit</a> 
+                    <a id="deleteUnitButton" href="{{ url('/units/deleteunit/' .$question->question_id) }}" onclick="return confirm('Are you sure you want to delete this unit?')" class="edit btn btn-danger btn-sm">Delete</a> </td>
                 </tr> 
                   {{-- <td>{{ substr($unit->body, 0, 50) }} {{ strlen($post->body) > 50?"...": ""}}</td> --}}
                
