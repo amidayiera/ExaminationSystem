@@ -311,8 +311,20 @@ ul.CTAs a {
                 </li>
                     <hr>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Questions</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Exams</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="{{ url('exams/addexam') }}">Create New Examination</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('exams/viewexam') }}">View Examinations</a>
+                        </li>
+                    </ul>
+                </li>
+                <hr>
+                <li>
+                    <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Questions</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu2">
                         <li>
                             <a href="{{ url('questions/create') }}">Create New Question</a>
                         </li>
@@ -321,18 +333,7 @@ ul.CTAs a {
                         </li>
                     </ul>
                 </li>
-                <hr>
-                <li>
-                    <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tests</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu2">
-                        <li>
-                            <a href="#">Create New Test</a>
-                        </li>
-                        <li>
-                            <a href="#">View Tests</a>
-                        </li>
-                    </ul>
-                </li>
+                
                 <hr>
                 <li>
                     <a href="#">Students</a>

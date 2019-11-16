@@ -3,7 +3,7 @@
 @section('content')
 <div id="content-header">
     {{-- <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Courses</a> </div> --}}
-    <h2>Units</h2>
+    <h2>Exams</h2>
     @if(Session::has('flash_message_error'))
         <div class="alert alert-error alert-block">
             <button type="button" class="close" data-dismiss="alert">x</button>
@@ -28,20 +28,28 @@
             <table id="example" class="table table-striped table-bordered" style="width:100%">
               <thead>
                 <tr>
-                    <th  width="10%">Course Code</th>
-                    <th>Course Name</th>
-                    <th width="10%">Unit Code</th>
-                    <th>Unit Name</th>
+                  <th width="10%">Unit Code</th>
+                  <th>Unit Name</th>
+                  <th>Exam Title</th>
+
+                  <th>Created on</th>
+                  <th width="10%">Action</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($units as $unit)
+                @foreach ($exams as $exam)
                 <tr class="gradeU">
-                    <td>{{ $unit->course->course_code }}</td>
-                    <td>{{ $unit->course->course_name }}</td>
-                    <td>{{ $unit->unit_code }}</td>
-                    <td>{{ $unit->unit_name }}</td>
+                  <td>{{ $exam->unit->unit_code }}</td>
+                  <td>{{ $exam->unit->unit_name }}</td>
+                  <td>{{ $exam->exam_title}}</td>
+                  <td>{{ date ('M j, Y', strtotime($exam->created_at)) }}</td>
+                  {{-- <td>{{ $oneCourse-> }}</td> --}}
+                  <td class="center"> <a href="{{ url('/exams/editexam/' .$exam->id) }} " class="edit btn btn-primary btn-sm">Edit</a> 
+                    <a id="deleteUnitButton" href="{{ url('/exams/deleteexam/' .$exam->id) }}" onclick="return confirm('Are you sure you want to delete this exam?')" class="edit btn btn-danger btn-sm">Delete</a> </td>
                 </tr> 
+                  {{-- <td>{{ substr($unit->body, 0, 50) }} {{ strlen($post->body) > 50?"...": ""}}</td> --}}
+               
+               
                 @endforeach
               </tbody>
             </table>

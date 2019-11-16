@@ -34,11 +34,17 @@ Route::match(['get','post'], '/courses/deletecourse/{course_id}', 'CoursesContro
 Route::get('/courses/viewcourse','CoursesController@viewCourses');
 
 Route::match(['get','post'], '/units/addunit', 'UnitsController@addUnit');
-Route::match(['get','post'], '/units/editunit/{id}', 'UnitsController@editUnit');
-Route::match(['get','post'], '/units/deleteunit/{id}', 'UnitsController@deleteUnit');
+Route::match(['get','post'], '/units/editunit/{unit_id}', 'UnitsController@editUnit');
+Route::match(['get','post'], '/units/deleteunit/{unit_id}', 'UnitsController@deleteUnit');
 
 Route::get('/units/viewunit','UnitsController@viewUnits');
 Route::get('/units/displayIndividual','UnitsController@displayIndividual');
+
+Route::match(['get','post'], '/exams/addexam', 'ExamsController@addExam');
+Route::match(['get','post'], '/exams/editexam/{exam_id}', 'ExamsController@editExam');
+Route::match(['get','post'], '/exams/deleteexam/{exam_id}', 'ExamsController@deleteExam');
+
+Route::get('/exams/viewexam','ExamsController@viewExams');
 
 Route::view('/admin', 'admin');
 Route::view('/lecturer','lecturer');

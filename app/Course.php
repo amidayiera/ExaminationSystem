@@ -14,7 +14,7 @@ class Course extends Model
     // protected $guarded = [];
 
     public function units(){
-        return $this->hasMany('App\Unit','id');
+        return $this->hasMany('App\Unit','unit_id');
         // return $this->hasMany(Unit::class);
     }
     // public function lecturers(){

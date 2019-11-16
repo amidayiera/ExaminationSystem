@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Exam;
 use App\Question;
-// use App\QuestionsOption;
+use App\Unit;
+use App\QuestionsOption;
 // use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
@@ -23,14 +26,9 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        // if (! Gate::allows('question_access')) {
-        //     return abort(401);
-        // }
 
         if (request('show_deleted') == 1) {
-            // if (! Gate::allows('question_delete')) {
-            //     return abort(401);
-            // }
+          
             $questions = Question::onlyTrashed()->get();
         } else {
             $questions = Question::all();
@@ -46,11 +44,10 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        // if (! Gate::allows('question_create')) {
-        //     return abort(401);
-        // }
-        $tests = \App\Test::get()->pluck('title', 'id');
-        return view('questions.create', compact('tests'));
+        $exams = Exam::all();
+        $exams = Exam::get()->pluck('unit_name','question_id');
+        // $tests = \App\Test::get()->pluck('title', 'question_id');
+        return view('questions.create', compact('exams'));
     }
 
     /**
@@ -61,61 +58,56 @@ class QuestionsController extends Controller
      */
     public function store(StoreQuestionsRequest $request)
     {
-        // if (! Gate::allows('question_create')) {
-        //     return abort(401);
-        // }
+        $exams = Exam::all();
+        $exams = Exam::get()->pluck('unit_name','question_id');
+        
         $request = $this->saveFiles($request);
         $question = Question::create($request->all());
-        $question->tests()->sync(array_filter((array)$request->input('tests')));
+        $question->exams()->sync(array_filter((array)$request->input('exams')));
 
         for ($q=1; $q <= 4; $q++) {
             $option = $request->input('option_text_' . $q, '');
             if ($option != '') {
                 QuestionsOption::create([
-                    'question_id' => $question->id,
+                    'question_id' => $question->question_id,
                     'option_text' => $option,
                     'correct' => $request->input('correct_' . $q)
                 ]);
             }
         }
 
+        // $question->save();
         return redirect()->route('questions.index');
     }
-
 
     /**
      * Show the form for editing Question.
      *
-     * @param  int  $id
+     * @param  int  $question_id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($question_id)
     {
-        // if (! Gate::allows('question_edit')) {
-        //     return abort(401);
-        // }
-        $question = Question::findOrFail($id);
-        $tests = \App\Test::get()->pluck('title', 'id');
+        $question = Question::findOrFail($question_id);
+        $exams = Exam::get()->pluck('unit_name','question_id');
+        // $tests = \App\Test::get()->pluck('title', 'question_id');
 
-        return view('questions.edit', compact('question', 'tests'));
+        return view('questions.edit', compact('question', 'exams'));
     }
 
     /**
      * Update Question in storage.
      *
      * @param  \App\Http\Requests\UpdateQuestionsRequest  $request
-     * @param  int  $id
+     * @param  int  $question_id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateQuestionsRequest $request, $id)
+    public function update(UpdateQuestionsRequest $request, $question_id)
     {
-        // if (! Gate::allows('question_edit')) {
-        //     return abort(401);
-        // }
         $request = $this->saveFiles($request);
-        $question = Question::findOrFail($id);
+        $question = Question::findOrFail($question_id);
         $question->update($request->all());
-        $question->tests()->sync(array_filter((array)$request->input('tests')));
+        $question->exams()->sync(array_filter((array)$request->input('exams')));
 
 
 
@@ -126,37 +118,33 @@ class QuestionsController extends Controller
     /**
      * Display Question.
      *
-     * @param  int  $id
+     * @param  int  $question_id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($question_id)
     {
-        // if (! Gate::allows('question_view')) {
-        //     return abort(401);
-        // }
-        $questions_options = \App\QuestionsOption::where('question_id', $id)->get();$tests = \App\Test::whereHas('questions',
-                    function ($query) use ($id) {
-                        $query->where('id', $id);
+
+        $questions_options = QuestionsOption::where('question_id', $question_id)->get();
+        $exams = Exam::whereHas('questions',
+                    function ($query) use ($question_id) {
+                        $query->where('question_id', $question_id);
                     })->get();
 
-        $question = Question::findOrFail($id);
+        $question = Question::findOrFail($question_id);
 
-        return view('questions.show', compact('question', 'questions_options', 'tests'));
+        return view('questions.show', compact('question', 'questions_options', 'exams'));
     }
 
 
     /**
      * Remove Question from storage.
      *
-     * @param  int  $id
+     * @param  int  $question_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($question_id)
     {
-        // if (! Gate::allows('question_delete')) {
-        //     return abort(401);
-        // }
-        $question = Question::findOrFail($id);
+        $question = Question::findOrFail($question_id);
         $question->delete();
 
         return redirect()->route('questions.index');
@@ -169,11 +157,8 @@ class QuestionsController extends Controller
      */
     public function massDestroy(Request $request)
     {
-        if (! Gate::allows('question_delete')) {
-            return abort(401);
-        }
         if ($request->input('ids')) {
-            $entries = Question::whereIn('id', $request->input('ids'))->get();
+            $entries = Question::whereIn('question_id', $request->input('ids'))->get();
 
             foreach ($entries as $entry) {
                 $entry->delete();
@@ -182,37 +167,31 @@ class QuestionsController extends Controller
     }
 
 
-    /**
-     * Restore Question from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function restore($id)
-    {
-        if (! Gate::allows('question_delete')) {
-            return abort(401);
-        }
-        $question = Question::onlyTrashed()->findOrFail($id);
-        $question->restore();
+    // /**
+    //  * Restore Question from storage.
+    //  *
+    //  * @param  int  $question_id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function restore($question_id)
+    // {
+    //     $question = Question::onlyTrashed()->findOrFail($question_id);
+    //     $question->restore();
 
-        return redirect()->route('questions.index');
-    }
+    //     return redirect()->route('questions.index');
+    // }
 
-    /**
-     * Permanently delete Question from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function perma_del($id)
-    {
-        if (! Gate::allows('question_delete')) {
-            return abort(401);
-        }
-        $question = Question::onlyTrashed()->findOrFail($id);
-        $question->forceDelete();
+    // /**
+    //  * Permanently delete Question from storage.
+    //  *
+    //  * @param  int  $question_id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function perma_del($question_id)
+    // {
+    //     $question = Question::onlyTrashed()->findOrFail($question_id);
+    //     $question->forceDelete();
 
-        return redirect()->route('questions.index');
-    }
+    //     return redirect()->route('questions.index');
+    // }
 }

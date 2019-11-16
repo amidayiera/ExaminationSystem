@@ -14,7 +14,7 @@ class CreateUnitsTable extends Migration
     public function up()
     {
         Schema::create('units', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('unit_id');
             // $table->integer('course_id')->unsigned();
             $table->unsignedInteger('course_id');
             $table->string('unit_code');

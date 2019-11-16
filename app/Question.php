@@ -24,11 +24,14 @@ class Question extends Model
 
     public function options()
     {
-        return $this->hasMany('App\QuestionsOption');
+        return $this->hasMany('App\QuestionsOption','question_option_id');
     }
 
     public function units()
     {
-        return $this->belongsToMany(Unit::class, 'question_test');
+        return $this->belongsTo('App\Unit', 'unit_id');
+    }
+    public function exams(){
+        return $this->belongsTo('App\Exam','exam_id');
     }
 }

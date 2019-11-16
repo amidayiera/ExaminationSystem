@@ -35,23 +35,23 @@ class UnitsController extends Controller
         return view('units.addUnit')->with(['courses'=>$courses,'lecturers'=>$lecturers]);
     }
 
-    public function editUnit(Request $request, $id = null){
-        // $unit = Unit::find($id);
+    public function editUnit(Request $request, $unit_id = null){
+        // $unit = Unit::find($unit_id);
         $lecturers = Lecturer::all();
         $courses = Course::all();
         if($request->isMethod('post')) {
             $data =$request->all();
             // echo "<pre> something something"; print_r($data);die;
-            Unit::where(['id'=>$id])->update(['course_id'=>$request['course_id'],'unit_name'=>$request['unit_name'], 'unit_code'=>$request['unit_code'],'lecturer_id'=>$request['lecturer_id']]);
+            Unit::where(['unit_id'=>$unit_id])->update(['course_id'=>$request['course_id'],'unit_name'=>$request['unit_name'], 'unit_code'=>$request['unit_code'],'lecturer_id'=>$request['lecturer_id']]);
             return redirect('/units/viewunit')->with('flash_message_success','Unit Updated');
         }
-        $unitDetails = Unit::where(['id'=>$id])->first();
+        $unitDetails = Unit::where(['unit_id'=>$unit_id])->first();
         return view('units.editUnit')->with(compact('unitDetails','courses','lecturers'));
     }
 
-    public function deleteUnit($id=null){
-        if(!empty($id)){
-            Unit::where(['id'=>$id])->delete();
+    public function deleteUnit($unit_id=null){
+        if(!empty($unit_id)){
+            Unit::where(['unit_id'=>$unit_id])->delete();
             return redirect()->back()->with('flash_message_success', 'Unit Deleted Successfully!');
         }
     }
@@ -76,17 +76,22 @@ class UnitsController extends Controller
     }
     
     public function displayIndividual(){
-        $courses = Course::get();
-        $courses = json_decode(json_encode($courses));
+
+        $courses = Course::all();
+        $lecturers = Lecturer::all();
+        // $courses = json_decode(json_encode($courses));
         // $courses = Course::with(['course_name'])->get();
-
-
-        $lecturers = Lecturer::get();
-        $lecturers = json_decode(json_encode($lecturers));
-
-        $units = Unit::get();
+        // $courses = Course::with('unit')->get();
+        // $lecturers = Lecturer::get();
+        // $lecturers = json_decode(json_encode($lecturers));
+        
+        $units = Unit::all();
+        $units = Unit::with('course','lecturer')->get();
+        
+        // dd($units);
         $units = json_decode(json_encode($units));
 
-        return view('units.displayIndividual')->with(compact('units', 'courses','lecturers'));
+
+        return view('units.displayIndividual')->with(compact('units','courses','lecturers'));
     }
 }

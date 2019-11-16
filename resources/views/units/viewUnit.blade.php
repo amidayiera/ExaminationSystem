@@ -48,8 +48,8 @@
                   <td>{{ $unit->lecturer->first_name}} {{ $unit->lecturer->last_name}}</td>
                   <td>{{ date ('M j, Y', strtotime($unit->created_at)) }}</td>
                   {{-- <td>{{ $oneCourse-> }}</td> --}}
-                  <td class="center"> <a href="{{ url('/units/editunit/' .$unit->id) }} " class="edit btn btn-primary btn-sm">Edit</a> 
-                    <a id="deleteUnitButton" href="{{ url('/units/deleteunit/' .$unit->id) }}" onclick="return confirm('Are you sure you want to delete this unit?')" class="edit btn btn-danger btn-sm">Delete</a> </td>
+                  <td class="center"> <a href="{{ url('/units/editunit/' .$unit->unit_id) }} " class="edit btn btn-primary btn-sm">Edit</a> 
+                    <a id="deleteUnitButton" href="{{ url('/units/deleteunit/' .$unit->unit_id) }}" onclick="return confirm('Are you sure you want to delete this unit?')" class="edit btn btn-danger btn-sm">Delete</a> </td>
                 </tr> 
                   {{-- <td>{{ substr($unit->body, 0, 50) }} {{ strlen($post->body) > 50?"...": ""}}</td> --}}
                

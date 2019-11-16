@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Question;
 use App\QuestionsOption;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -18,15 +18,10 @@ class QuestionsOptionsController extends Controller
      */
     public function index()
     {
-        // if (! Gate::allows('questions_option_access')) {
-        //     return abort(401);
-        // }
 
 
         if (request('show_deleted') == 1) {
-            // if (! Gate::allows('questions_option_delete')) {
-            //     return abort(401);
-            // }
+          
             $questions_options = QuestionsOption::onlyTrashed()->get();
         } else {
             $questions_options = QuestionsOption::all();
@@ -42,10 +37,8 @@ class QuestionsOptionsController extends Controller
      */
     public function create()
     {
-        // if (! Gate::allows('questions_option_create')) {
-        //     return abort(401);
-        // }
-        $questions = \App\Question::get()->pluck('question', 'id')->prepend('Please select', '');
+       
+        $questions = \App\Question::get()->pluck('question', ' question_options_id')->prepend('Please select', '');
 
         return view('admin.questions_options.create', compact('questions'));
     }
@@ -58,141 +51,118 @@ class QuestionsOptionsController extends Controller
      */
     public function store(StoreQuestionsOptionsRequest $request)
     {
-        // if (! Gate::allows('questions_option_create')) {
-        //     return abort(401);
-        // }
         $questions_option = QuestionsOption::create($request->all());
 
 
 
-        return redirect()->route('admin.questions_options.index');
+        return redirect()->route('questions_options.index');
     }
 
 
     /**
      * Show the form for editing QuestionsOption.
      *
-     * @param  int  $id
+     * @param  int  $ question_options_id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($question_options_id)
     {
-        // if (! Gate::allows('questions_option_edit')) {
-        //     return abort(401);
-        // }
-        $questions = \App\Question::get()->pluck('question', 'id')->prepend('Please select', '');
+        
+        $questions = \App\Question::get()->pluck('question', ' question_options_id')->prepend('Please select', '');
 
-        $questions_option = QuestionsOption::findOrFail($id);
+        $questions_option = QuestionsOption::findOrFail($question_options_id);
 
-        return view('admin.questions_options.edit', compact('questions_option', 'questions'));
+        return view('questions_options.edit', compact('questions_option', 'questions'));
     }
 
     /**
      * Update QuestionsOption in storage.
      *
      * @param  \App\Http\Requests\UpdateQuestionsOptionsRequest  $request
-     * @param  int  $id
+     * @param  int  $ question_options_id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateQuestionsOptionsRequest $request, $id)
+    public function update(UpdateQuestionsOptionsRequest $request, $question_options_id)
     {
-        // if (! Gate::allows('questions_option_edit')) {
-        //     return abort(401);
-        // }
-        $questions_option = QuestionsOption::findOrFail($id);
+        $questions_option = QuestionsOption::findOrFail($question_options_id);
         $questions_option->update($request->all());
 
 
 
-        return redirect()->route('admin.questions_options.index');
+        return redirect()->route('questions_options.index');
     }
 
 
     /**
      * Display QuestionsOption.
      *
-     * @param  int  $id
+     * @param  int  $ question_options_id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($question_options_id)
     {
-        // if (! Gate::allows('questions_option_view')) {
-        //     return abort(401);
-        // }
-        $questions_option = QuestionsOption::findOrFail($id);
+        $questions_option = QuestionsOption::findOrFail($question_options_id);
 
-        return view('admin.questions_options.show', compact('questions_option'));
+        return view('questions_options.show', compact('questions_option'));
     }
 
 
     /**
      * Remove QuestionsOption from storage.
      *
-     * @param  int  $id
+     * @param  int  $ question_options_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($question_options_id)
     {
-        // if (! Gate::allows('questions_option_delete')) {
-        //     return abort(401);
-        // }
-        $questions_option = QuestionsOption::findOrFail($id);
+        $questions_option = QuestionsOption::findOrFail($question_options_id);
         $questions_option->delete();
 
-        return redirect()->route('admin.questions_options.index');
+        return redirect()->route('questions_options.index');
     }
 
-    /**
-     * Delete all selected QuestionsOption at once.
-     *
-     * @param Request $request
-     */
-    public function massDestroy(Request $request)
-    {
-        // if (! Gate::allows('questions_option_delete')) {
-        //     return abort(401);
-        // }
-        if ($request->input('ids')) {
-            $entries = QuestionsOption::whereIn('id', $request->input('ids'))->get();
+    // /**
+    //  * Delete all selected QuestionsOption at once.
+    //  *
+    //  * @param Request $request
+    //  */
+    // public function massDestroy(Request $request)
+    // {
+    //     if ($request->input('ids')) {
+    //         $entries = QuestionsOption::whereIn(' question_options_id', $request->input('ids'))->get();
 
-            foreach ($entries as $entry) {
-                $entry->delete();
-            }
-        }
-    }
+    //         foreach ($entries as $entry) {
+    //             $entry->delete();
+    //         }
+    //     }
+    // }
 
 
-    /**
-     * Restore QuestionsOption from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function restore($id)
-    {
-        // if (! Gate::allows('questions_option_delete')) {
-        //     return abort(401);
-        // }
-        $questions_option = QuestionsOption::onlyTrashed()->findOrFail($id);
-        $questions_option->restore();
+    // /**
+    //  * Restore QuestionsOption from storage.
+    //  *
+    //  * @param  int  $ question_options_id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function restore($ question_options_id)
+    // {
+    //     $questions_option = QuestionsOption::onlyTrashed()->findOrFail($ question_options_id);
+    //     $questions_option->restore();
 
-        return redirect()->route('admin.questions_options.index');
-    }
+    //     return redirect()->route('admin.questions_options.index');
+    // }
 
-    /**
-     * Permanently delete QuestionsOption from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function perma_del($id)
-    {
-        // if (! Gate::allows('questions_option_delete')) {
-        //     return abort(401);
-        // }
-        $questions_option = QuestionsOption::onlyTrashed()->findOrFail($id);
-        $questions_option->forceDelete();
+    // /**
+    //  * Permanently delete QuestionsOption from storage.
+    //  *
+    //  * @param  int  $ question_options_id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function perma_del($ question_options_id)
+    // {
+    //     $questions_option = QuestionsOption::onlyTrashed()->findOrFail($ question_options_id);
+    //     $questions_option->forceDelete();
 
-        return redirect()->route('admin.questions_options.index');
-    }
+    //     return redirect()->route('admin.questions_options.index');
+    // }
 }

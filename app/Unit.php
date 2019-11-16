@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Unit extends Model
 {
     protected $table = 'units';
-    // protected $fillable = [
-    //     '','unit_code','unit_name'
-    // ];
-    protected $primaryKey = 'id';
-    protected $guarded = [];
+    protected $fillable = [
+        'course_id','unit_code','unit_name'
+    ];
+    protected $primaryKey = 'unit_id';
+    // protected $guarded = [];
 
     public function course(){
         return $this->belongsTo('App\Course','course_id');
@@ -21,8 +21,8 @@ class Unit extends Model
         // return $this->belongsTo(Lecturer::class);
         return $this->belongsTo('App\Lecturer','lecturer_id');
     }
-    public function test() {
-        return $this->hasOne('App\Test');
+    public function exams() {
+        return $this->hasMany('App\Exam','exam_id');
     }
 }
 
