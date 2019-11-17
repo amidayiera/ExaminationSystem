@@ -24,7 +24,7 @@ class Question extends Model
         $this->attributes['score'] = $input ? $input : null;
     }
 
-    public function options() {
+    public function questionsoptions() {
         return $this->hasMany('App\QuestionsOption','question_option_id');
     }
 

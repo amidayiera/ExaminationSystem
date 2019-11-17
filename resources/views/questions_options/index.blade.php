@@ -3,10 +3,7 @@
 
 @section('content')
     <h3 class="page-title">Options</h3>
-    <p>
-        <a href="{{ route('questions_options.create') }}" class="btn btn-success">Add New Option</a>
-        
-    </p>
+
     <div class="panel panel-default">
     
         <div class="panel-body table-responsive">
