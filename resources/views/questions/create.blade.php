@@ -4,21 +4,22 @@
 <div class="container">
     <h3>Create New Question</h3>
     <hr>
-    {!! Form::open(['method' => 'POST', 'action' => 'QuestionsController@addQuestion']) !!}
+    {!! Form::open(['method' => 'POST', 'route'=>['questions.store']]) !!}
     {!! Form::open(['method' => 'POST']) !!}
 
     <div class="row">
         <div class="form-group">
-            {!! Form::label('exams', 'Exams', ['class' => 'control-label']) !!}
-            {!! Form::select('exams', $exams, old('exams'), ['class' => 'form-control select2']) !!}
+            {!! Form::label('exam_id', 'Exams', ['class' => 'control-label']) !!}
+            {!! Form::select('exam_id', $exams, old('exam_id'), ['class' => 'form-control select2']) !!}
             <p class="help-block"></p>
-            @if($errors->has('exams'))
+            @if($errors->has('exam_id'))
                 <p class="help-block">
-                    {{ $errors->first('exams') }}
+                    {{ $errors->first('exam_id') }}
                 </p>
             @endif
         </div>
     </div>
+        
     <div class="panel panel-default">
         <div class="panel-heading">
         </div>

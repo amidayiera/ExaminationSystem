@@ -1,17 +1,17 @@
 @extends('layouts.lecturerSidebar')
 
 @section('content')
-    <h3 class="page-title">@lang('global.questions-options.title')</h3>
+    <h3 class="page-title">Create New Question Option</h3>
     {!! Form::open(['method' => 'POST', 'route' => ['questions_options.store']]) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            @lang('global.app_create')
+            Create
         </div>
         
         <div class="panel-body">
             <div class="row">
-                <div class="col-xs-12 form-group">
+                <div class=" form-group">
                     {!! Form::label('question_id', 'Question', ['class' => 'control-label']) !!}
                     {!! Form::select('question_id', $questions, old('question_id'), ['class' => 'form-control select2']) !!}
                     <p class="help-block"></p>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 form-group">
+                <div class="form-group">
                     {!! Form::label('option_text', 'Option text*', ['class' => 'control-label']) !!}
                     {!! Form::textarea('option_text', old('option_text'), ['class' => 'form-control ', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 form-group">
+                <div class="form-group">
                     {!! Form::label('correct', 'Correct', ['class' => 'control-label']) !!}
                     {!! Form::hidden('correct', 0) !!}
                     {!! Form::checkbox('correct', 1, false, []) !!}
@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_save'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('Save'), ['class' => 'btn btn-primary']) !!}
     {!! Form::close() !!}
 @stop
 

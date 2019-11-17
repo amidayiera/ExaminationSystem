@@ -1,9 +1,9 @@
 @extends('layouts.lecturerSidebar')
 
 @section('content')
-    <h3 class="page-title">@lang('global.questions-options.title')</h3>
+    <h3 class="page-title">Question Options</h3>
     
-    {!! Form::model($questions_option, ['method' => 'PUT', 'route' => ['admin.questions_options.update', $questions_option->id]]) !!}
+    {!! Form::model($questions_option, ['method' => 'PUT', 'route' => ['questions_options.update', $questions_option->question_option_id]]) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -52,7 +52,7 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_update'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('Updte'), ['class' => 'btn btn-primary']) !!}
     {!! Form::close() !!}
 @stop
 

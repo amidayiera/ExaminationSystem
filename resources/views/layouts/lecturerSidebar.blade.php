@@ -279,12 +279,16 @@ ul.CTAs a {
                             <a href="{{ url('questions/create') }}">Create New Question</a>
                         </li>
                         <li>
-                            <a href="{{ url('questions/show') }}">View Questions</a>
+                            <a href="{{ url('questions') }}">View Questions</a>
                         </li>
                     </ul>
                 </li>
-                
                 <hr>
+                
+                <li>
+                        <a href="{{ url('questions_options') }}">View Question Options</a>
+                    </li>
+                    <hr>
                 <li>
                     <a href="#">Students</a>
                 </li>

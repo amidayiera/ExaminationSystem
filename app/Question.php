@@ -9,7 +9,7 @@ class Question extends Model
 {
     use SoftDeletes;
     protected $table = "questions";
-
+    protected $primaryKey = 'question_id';
     // protected $guarded = [];
     protected $fillable = [
         'exam_id','question_id','question','score'
@@ -24,16 +24,14 @@ class Question extends Model
         $this->attributes['score'] = $input ? $input : null;
     }
 
-    public function options()
-    {
+    public function options() {
         return $this->hasMany('App\QuestionsOption','question_option_id');
     }
 
-    public function units()
-    {
+    public function units() {
         return $this->belongsTo('App\Unit', 'unit_id');
     }
-    public function exams(){
+    public function exams() {
         return $this->belongsTo('App\Exam','exam_id');
     }
 }

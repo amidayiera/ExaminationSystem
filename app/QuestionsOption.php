@@ -17,20 +17,14 @@ class QuestionsOption extends Model
 {
     use SoftDeletes;
 
-    protected $guarded = [];
-    
-
-    /**
-     * Set to null if empty
-     * @param $input
-     */
-    public function setQuestionIdAttribute($input)
-    {
-        $this->attributes['question_id'] = $input ? $input : null;
-    }
+    protected $table = 'questions_options';
+    protected $primaryKey = 'question_option_id';
+    protected $fillable = [
+        'question_option_id','question_id','option_text','correct'
+    ];
     
     public function question()
     {
-        return $this->belongsTo(Question::class, 'question_id')->withTrashed();
+        return $this->belongsTo('App\Question','question_id')->withTrashed();
     }
 }
