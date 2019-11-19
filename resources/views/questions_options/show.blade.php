@@ -12,7 +12,7 @@
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>Question</th>
-                            {{-- <td>{{ $questions_option->question->question}}</td> --}}
+                            <td>{{ $questions_option->question}}</td>
                         </tr>
                         <tr>
                             <th width="20%">Option Text</th>

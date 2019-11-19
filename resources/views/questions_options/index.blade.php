@@ -3,14 +3,27 @@
 
 @section('content')
     <h3 class="page-title">Options</h3>
-
+    @if(Session::has('flash_message_error'))
+    <div class="alert alert-error alert-block">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>{!! session('flash_message_error') !!}</strong>
+    </div>
+@endif
+@if(Session::has('flash_message_success'))
+    <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>{!! session('flash_message_success') !!}</strong>
+    </div>
+@endif
     <div class="panel panel-default">
     
         <div class="panel-body table-responsive">
             <table class="table table-bordered table-striped {{ count($questions_options) > 0 ? 'datatable' : '' }} @can('questions_option_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
-                        {{-- <th>Question</th> --}}
+                            <th width="25%">Exam Title</th>
+
+                        <th>Question</th>
                         <th>Option Text</th>
                         <th width="10%">Correct</th>
                         <th width="20%">Action</th>
@@ -19,11 +32,13 @@
                 </thead>
                 
                 <tbody>
-                    @if (count($questions_options) > 0)
-                        @foreach ($questions_options as $questions_option)
-                            <tr data-entry-id="{{ $questions_option->question_option_id }}">
-                             
-                                {{-- <td>{{!! $questions_option->question !!}}</td> --}}
+                        @if (count($questions_options) > 0)
+                            @foreach ($questions_options as $questions_option)
+                                <tr data-entry-id="{{ $questions_option->question_option_id }}">
+                                   
+                                    <td>{{$questions_option->question->exams->exam_title}}
+    
+                                    <td>{!!$questions_option->question->question!!}</td>
                                 <td>{!! $questions_option->option_text !!}</td>
                                 <td>{{ Form::checkbox("correct", 1, $questions_option->correct == 1 ? true : false, ["disabled"]) }}</td>
                             

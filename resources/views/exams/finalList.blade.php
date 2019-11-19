@@ -1,24 +1,25 @@
-@extends ('layouts.adminSidebar')
+@extends('layouts.lecturerSidebar')
 
 @section('content')
 <div id="content-header">
     {{-- <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Courses</a> </div> --}}
-    <h2>Courses</h2>
+    <h2>Exams</h2>
     @if(Session::has('flash_message_error'))
         <div class="alert alert-error alert-block">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <strong>{!! session('flash_message_error') !!}</strong>
+        </div>
     @endif
     @if(Session::has('flash_message_success'))
         <div class="alert alert-success alert-block">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <strong>{!! session('flash_message_success') !!}</strong>
+        </div>
     @endif
 
   </div>
   <div class="container-fluid">
     <hr>
-  {{-- <a href="{{ url('/courses/addcourse') }}" class="btn btn-primary float-right">Add New Course</a> --}}
     <div class="row-fluid">
       <div class="span12">
         <div class="widget-box">
@@ -29,24 +30,30 @@
             <table id="example" class="table table-striped table-bordered" style="width:100%">
               <thead>
                 <tr>
-                  {{-- <th>Course ID</th> --}}
-                  <th>Course Name</th>
-                  <th width="15%">Course code</th>
+                    {{-- <th width="10%">Course Code</th>
+                    <th>Coure Name</th> --}}
+                  <th width="10%">Unit Code</th>
+                  <th>Unit Name</th>
+                  <th>Exam Title</th>
+                  <th>Questions</th>
                   <th>Created on</th>
-                  <th width="20%">Action</th>
+                  <th width="10%">Action</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($courses as $course)
+                @foreach ($exams as $exam)
                 <tr class="gradeU">
-                  {{-- <td>{{ $oneCourse->course_id }}</td> --}}
-                  <td>{{ $course->course_name }}</td>
-                  <td>{{ $course->course_code }}</td>
-                  <td>{{ date ('M j, Y', strtotime($course->created_at)) }}</td>
+                  <td>{{ $exam->unit->unit_code }}</td>
+                  <td>{{ $exam->unit->unit_name }}</td>
+                  <td>{{ $exam->exam_title}}</td>
+                  <td>{{ count($exam->questions) }}</td>
+
+                  <td>{{ date ('M j, Y', strtotime($exam->created_at)) }}</td>
                   {{-- <td>{{ $oneCourse-> }}</td> --}}
-                <td class="center"> <a href="{{ url('/courses/editcourse/' .$course->course_id) }} " class="edit btn btn-primary btn-sm">Edit</a> 
-                  <a id="deleteCourseButton" href="{{ url('/courses/deletecourse/' .$course->course_id) }}" onclick="return confirm('Are you sure you want to delete this course?')" class="edit btn btn-danger btn-sm">Delete</a> </td>
-                </tr>
+                  <td class="center"> <a href="{{ url('/exams/editexam/' .$exam->exam_id) }} " class="edit btn btn-primary btn-sm">Edit</a> 
+                    <a id="deleteUnitButton" href="{{ url('/exams/deleteexam/' .$exam->exam_id) }}" onclick="return confirm('Are you sure you want to delete this exam?')" class="edit btn btn-danger btn-sm">Delete</a> </td>
+                </tr> 
+                {{--  --}}
                 @endforeach
               </tbody>
             </table>
@@ -74,5 +81,6 @@ $(document).ready(function() {
 //   }
 //   return false;
 // });
+
 </script>
 @endsection

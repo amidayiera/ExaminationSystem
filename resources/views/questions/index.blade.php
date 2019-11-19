@@ -25,11 +25,11 @@
             <table class="table table-bordered table-striped {{ count($questions) > 0 ? 'datatable' : '' }} @can('question_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
-                        <th>Exam Title</th>
+                        <th width="25%">Exam Title</th>
                         <th>Question</th>
                         <th  width="10%">Score</th>
-                        <th>Created On</th>
-                        <th>Action</th>
+                        <th width="15%">Created On</th>
+                        <th width="15%">Action</th>
                        
                     </tr>
                 </thead>

@@ -7,15 +7,15 @@ use App\Question;
 use App\Unit;
 use App\QuestionsOption;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreQuestionsRequest;
-use App\Http\Requests\UpdateQuestionsRequest;
-use App\Http\Controllers\Traits\FileUploadTrait;
+// use App\Http\Requests\StoreQuestionsRequest;
+// use App\Http\Requests\UpdateQuestionsRequest;
+// use App\Http\Controllers\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
 
 
 class QuestionsController extends Controller
 {
-    use FileUploadTrait;
+    // use FileUploadTrait;
 
     /**
      * Display a listing of Question.
@@ -116,8 +116,10 @@ class QuestionsController extends Controller
                     function ($query) use ($question_id) {
                         $query->where('question_id', $question_id);
                     })->get();
+        $questions = Question::all();
 
         $question = Question::findOrFail($question_id);
+        
 
         return view('questions.show', compact('question', 'questions_options', 'exams'));
     }

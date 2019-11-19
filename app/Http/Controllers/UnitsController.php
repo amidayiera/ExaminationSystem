@@ -90,8 +90,6 @@ class UnitsController extends Controller
         
         // dd($units);
         $units = json_decode(json_encode($units));
-
-
         return view('units.displayIndividual')->with(compact('units','courses','lecturers'));
     }
 }

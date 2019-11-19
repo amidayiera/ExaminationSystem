@@ -32,6 +32,9 @@ Route::match(['get','post'], '/courses/addcourse', 'CoursesController@addCourse'
 Route::match(['get','post'], '/courses/editcourse/{course_id}', 'CoursesController@editCourse');
 Route::match(['get','post'], '/courses/deletecourse/{course_id}', 'CoursesController@deleteCourse');
 Route::get('/courses/viewcourse','CoursesController@viewCourses');
+// Route::get('/course', ['uses' => 'StudentCoursesController@show', 'as' => 'courses.show']);
+
+Route::get('/course','StudentCoursesController@show');
 
 Route::match(['get','post'], '/units/addunit', 'UnitsController@addUnit');
 Route::match(['get','post'], '/units/editunit/{unit_id}', 'UnitsController@editUnit');
@@ -39,12 +42,17 @@ Route::match(['get','post'], '/units/deleteunit/{unit_id}', 'UnitsController@del
 
 Route::get('/units/viewunit','UnitsController@viewUnits');
 Route::get('/units/displayIndividual','UnitsController@displayIndividual');
+Route::get('/units/{course_id}',['uses'=>'StudentUnitsController@show', 'as' => 'units.show']);
+// Route::get('lesson/{course_id}/{slug}', ['uses' => 'LessonsController@show', 'as' => 'lessons.show']);
+
 
 Route::match(['get','post'], '/exams/addexam', 'ExamsController@addExam');
 Route::match(['get','post'], '/exams/editexam/{exam_id}', 'ExamsController@editExam');
 Route::match(['get','post'], '/exams/deleteexam/{exam_id}', 'ExamsController@deleteExam');
 
 Route::get('/exams/viewexam','ExamsController@viewExams');
+Route::get('/exams/finallist','ExamsController@finalList');
+
 
 Route::view('/admin', 'admin');
 Route::view('/lecturer','lecturer');

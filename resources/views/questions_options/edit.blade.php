@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('Updte'), ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit(trans('Update'), ['class' => 'btn btn-primary']) !!}
     {!! Form::close() !!}
 @stop
 

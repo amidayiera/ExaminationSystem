@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Unit;
 use App\Exam;
+use App\Question;
 use Session;
 use Symfony\Component\Console\Input\Input;
 use Illuminate\Support\Facades\Validator;
@@ -54,7 +55,18 @@ class ExamsController extends Controller
         // dd($exams);
         $exams = json_decode(json_encode($exams));
 
-        return view('exams.viewExam')->with(compact('exams','unit'));
+        return view('exams.viewExam')->with(compact('exams'));
     }
-    
+
+    public function finalList(){
+        $unit = Unit::all();
+        $questions = Question::all();
+        $exams = Exam::all();
+        $exams = Exam::with('unit','questions')->get();
+        
+        // dd($exams);
+        $exams = json_decode(json_encode($exams));
+
+        return view('exams.finalList')->with(compact('exams'));
+    }
 }

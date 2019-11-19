@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 use App\Question;
 use App\QuestionsOption;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreQuestionsOptionsRequest;
-use App\Http\Requests\Admin\UpdateQuestionsOptionsRequest;
 
 class QuestionsOptionsController extends Controller
 {
@@ -43,7 +40,7 @@ class QuestionsOptionsController extends Controller
      * @param  \App\Http\Requests\StoreQuestionsOptionsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreQuestionsOptionsRequest $request)
+    public function store(Request $request)
     {
         
         $questions_option = QuestionsOption::create($request->all());
@@ -59,8 +56,8 @@ class QuestionsOptionsController extends Controller
      */
     public function edit($question_option_id)
     {
-        $questions = Question::get()->pluck('question', ' question_option_id')->prepend('Please select', '');
-
+        $questions = Question::get()->pluck('question', ' question_id')->prepend('Please select', '');
+        $questions_option = QuestionsOption::all();
         $questions_option = QuestionsOption::findOrFail($question_option_id);
 
         return view('questions_options.edit', compact('questions_option', 'questions'));
@@ -73,7 +70,7 @@ class QuestionsOptionsController extends Controller
      * @param  int  $ question_option_id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateQuestionsOptionsRequest $request, $question_option_id)
+    public function update(Request $request, $question_option_id)
     {
         $questions_option = QuestionsOption::findOrFail($question_option_id);
         $questions_option->update($request->all());

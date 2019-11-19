@@ -11,6 +11,10 @@
                 <div class="col-md-6">
                     <table class="table table-bordered table-striped">
                         <tr>
+                            <th>Exam Title</th>
+                            <td>{!!$question->exams->exam_title!!}</td>
+                        </tr>
+                        <tr>
                             <th>Question</th>
                             <td>{!! $question->question !!}</td>
                         </tr>

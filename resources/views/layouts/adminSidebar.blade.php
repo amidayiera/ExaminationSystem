@@ -265,13 +265,13 @@ ul.CTAs a {
                 </li>
                 <hr>
                
-                <li>
+                {{--<li>
                   <a href="#">Students</a>
               </li>
               <hr>
               <li>
                 <a href="#">Scores</a>
-            </li>
+            </li> --}}
             </ul>
         </nav>
         <!-- Page Content  -->

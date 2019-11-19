@@ -248,9 +248,9 @@ ul.CTAs a {
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h5>Lecturer</h5>
+                <h5>Student</h5>
             {{-- <h4 style="text-transform:uppercase;">Lecturer's name</h5> --}}
-            <h4 style="text-transform:uppercase;">{{ Auth::guard('lecturer')->user()->first_name}} {{ Auth::guard('lecturer')->user()->last_name}}</h4>
+            <h4 style="text-transform:uppercase;">{{ Auth::user()->first_name}} {{ Auth::user()->last_name}}</h4>
 
 
             </div>
@@ -259,7 +259,7 @@ ul.CTAs a {
        
 
                 <li>
-                    <a href="{{url('units/displayIndividual')}}">Units</a>
+                    <a href="{{url('/course')}}">Courses</a>
                 </li>
                     <hr>
                 <li>
@@ -288,14 +288,7 @@ ul.CTAs a {
                     </li>
                     </ul>
                 </li>
-                <hr>
-                <li>
-                    <a href="{{ url('exams/finallist') }}">Final Exams</a>
-                </li>
-                    <hr>
-                <li>
-                    <a href="#">Students</a>
-                </li>
+           
                 <hr>
             </ul>
 

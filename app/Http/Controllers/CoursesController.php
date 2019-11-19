@@ -48,4 +48,11 @@ class CoursesController extends Controller
         $courses = json_decode(json_encode($courses));
         return view('courses.viewCourse')->with(compact('courses'));
     }
+    public function display($course_id=null)
+    {
+        $courses = Course::all();
+        $courses = Course::where('course_id', $course_id)->firstOrFail();
+
+        return view('course', compact('courses'));
+    }
 }

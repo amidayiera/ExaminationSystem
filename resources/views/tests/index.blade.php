@@ -32,17 +32,10 @@
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
 
-                        <th>@lang('global.tests.fields.course')</th>
-                        <th>@lang('global.tests.fields.lesson')</th>
-                        <th>@lang('global.tests.fields.title')</th>
-                        <th>@lang('global.tests.fields.description')</th>
-                        <th>@lang('global.tests.fields.questions')</th>
-                        <th>@lang('global.tests.fields.published')</th>
-                        @if( request('show_deleted') == 1 )
-                        <th>&nbsp;</th>
-                        @else
-                        <th>&nbsp;</th>
-                        @endif
+                        <th>Course</th>
+                        <th>Unit</th>
+                        <th>Questions</th>
+                     
                     </tr>
                 </thead>
                 
